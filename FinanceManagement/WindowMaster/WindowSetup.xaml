@@ -1,0 +1,222 @@
+﻿<Window x:Class="FinanceManagement.WindowReport.WindowSetup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" Loaded="Window_Loaded" WindowState="Maximized"
+        Title="WindowSetup" Height="1080" Width="1920">
+    <Window.Resources>
+        <Style TargetType="ComboBox">
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+        <Style TargetType="ToolTip">
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+        <Style TargetType="TabItem">
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Viewbox>
+
+            <Grid Height="1030" Width="1920" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition x:Name="colControl" Width="300"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+
+                <GridSplitter Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" BorderThickness="2" BorderBrush="LightBlue" MouseDoubleClick="GridSplitter_MouseDoubleClick" ToolTip="列の幅を変更"/>
+
+                <Grid Grid.Column="0" Background="Gainsboro">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Content="設定" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontWeight="Bold"/>
+
+                    <Label Grid.Row="1" Content="会社名" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontWeight="Bold"/>
+
+                    <ComboBox x:Name="cbCompany" Grid.Row="2" Margin="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectedIndex="0">
+                        <ComboBoxItem Content="セイキョウ"/>
+                    </ComboBox>
+
+                    <Border Grid.Row="13" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BorderThickness="1" BorderBrush="CornflowerBlue"/>
+
+                    <Button x:Name="btnSave" Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" Content="保存" Click="btnSave_Click" Background="CornflowerBlue" Foreground="White" BorderBrush="DarkBlue" FontSize="24" IsEnabled="False">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                    <Border Grid.Row="14" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BorderThickness="1" BorderBrush="OrangeRed"/>
+
+                    <Button x:Name="btnClose" Grid.Row="14" Grid.Column="0" Grid.ColumnSpan="2"  Margin="5" Content="戻る" Click="btnClose_Click" Background="LightSalmon" Foreground="White" BorderBrush="LightCoral" FontSize="24">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                </Grid>
+
+                <TabControl x:Name="tabControl" Grid.Row="0" Grid.Column="2" SelectionChanged="tabControl_SelectionChanged">
+                    <TabItem Name="tabFeeStruct" Header="費名設定">
+                        <DataGrid x:Name="gridFeeStruct" AutoGenerateColumns="False" CellEditEnding="gridFeeStruct_CellEditEnding" BeginningEdit="gridFeeStruct_BeginningEdit" CommandManager.PreviewCanExecute="gridFeeStruct_PreviewCanExecute">
+                            <DataGrid.Columns>
+
+                                <DataGridTextColumn Width="2*" Header="費名" Binding="{Binding Path=FeeName}">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="ToolBar.ToolTip" Value="メイン画面のボタン名"/>
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Width="5*" Header="備考" Binding="{Binding Path=Remark}">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="ToolBar.ToolTip" Value="メイン画面のボタンのヒント"/>
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTemplateColumn Width="1*" Visibility="Visible" Header="マスター">
+                                    <DataGridTemplateColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="ToolBar.ToolTip" Value="マスター設定"/>
+                                        </Style>
+                                    </DataGridTemplateColumn.HeaderStyle>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Click="btnMaster_Click" Content="設定"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn Width="1*" Visibility="Visible" Header="費設定">
+                                    <DataGridTemplateColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="ToolBar.ToolTip" Value="費タイプと費の項目設定"/>
+                                        </Style>
+                                    </DataGridTemplateColumn.HeaderStyle>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Click="btnFeeSetup_Click" Content="設定"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn Width="1*" Visibility="Visible" Header="行削除">
+                                    <DataGridTemplateColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="ToolBar.ToolTip" Value="メイン画面のボタンを削除"/>
+                                        </Style>
+                                    </DataGridTemplateColumn.HeaderStyle>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Click="btnDeleteRow_Click" Content="削除"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem>
+
+                    <TabItem Name="tabFeeType" Header="費タイプ">
+                        <DataGrid x:Name="gridFeeType" AutoGenerateColumns="False" CellEditEnding="gridFeeType_CellEditEnding" CommandManager.PreviewCanExecute="gridFeeType_PreviewCanExecute" BeginningEdit="gridFeeType_BeginningEdit">
+                            <DataGrid.Columns>
+
+                                <DataGridTextColumn Width="3*" Header="費タイプ" Binding="{Binding Path=FeeType}">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="ToolBar.ToolTip" Value="費の細かいタイプ。例えば、「車両費」の費タイプは「リース」、「ガソリン」、「車検・修理費」、「任意保険」です。"/>
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Width="5*" Header="備考" Binding="{Binding Path=Remark}">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="ToolBar.ToolTip" Value="費タイプの備考"/>
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTemplateColumn Width="1*" Visibility="Visible" Header="行削除">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Click="btnDeleteFeeTypeRow_Click" Content="削除"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem>
+
+                    <TabItem Name="tabFeeField" Header="費の項目">
+                        <DataGrid x:Name="gridFeeField" AutoGenerateColumns="False" CanUserAddRows="False" CellEditEnding="gridFeeField_CellEditEnding" CommandManager.PreviewCanExecute="gridFeeField_PreviewCanExecute">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Width="3*" Header="項目１" Binding="{Binding Path=Field1}">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="ToolBar.ToolTip" Value="「項目」以外の費の入力のテーブルの列１"/>
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Width="3*" Header="項目２" Binding="{Binding Path=Field2}">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="ToolBar.ToolTip" Value="「項目」以外の費の入力のテーブルの列２"/>
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Width="3*" Header="項目３" Binding="{Binding Path=Field3}">
+                                    <DataGridTextColumn.HeaderStyle>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="ToolBar.ToolTip" Value="「項目」以外の費の入力のテーブルの列３"/>
+                                        </Style>
+                                    </DataGridTextColumn.HeaderStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Width="3*" Header="項目４" Binding="{Binding Path=Field4}"/>
+                                <DataGridTextColumn Width="3*" Header="項目５" Binding="{Binding Path=Field5}"/>
+                                <DataGridTextColumn Width="3*" Header="項目６" Binding="{Binding Path=Field6}"/>
+                                <DataGridTextColumn Width="3*" Header="項目７" Binding="{Binding Path=Field7}"/>
+                                <DataGridTextColumn Width="3*" Header="項目８" Binding="{Binding Path=Field8}"/>
+                                <DataGridTextColumn Width="3*" Header="項目９" Binding="{Binding Path=Field9}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem>
+                </TabControl>
+            </Grid>
+        </Viewbox>
+    </Grid>
+</Window>

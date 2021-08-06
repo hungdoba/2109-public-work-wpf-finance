@@ -1,0 +1,295 @@
+﻿<Window x:Class="FinanceManagement.WindowImport"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" WindowState="Maximized" Loaded="Window_Loaded"
+        Title="WindowImport" Height="1080" Width="1920">
+    <Window.Resources>
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="FontSize" Value="30"/>
+        </Style>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="30"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FontSize" Value="30"/>
+        </Style>
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="FontSize" Value="30"/>
+        </Style>
+    </Window.Resources>
+
+    <Viewbox>
+        <Grid Height="1030" Width="1920" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+
+            <GridSplitter Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" Width="2" BorderBrush="Black"/>
+
+            <TabControl Grid.Column="2">
+
+                <TabItem Name="tabConverted" Header="売上インポート">
+                    <DataGrid x:Name="gridSale" Grid.Column="2" AutoGenerateColumns="False" FontSize="16" CanUserAddRows="False" SelectionMode="Extended" SelectionUnit="Cell" CanUserSortColumns="False" RowHeight="30">
+
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="コピー" Command="ApplicationCommands.Copy"/>
+                                <Separator/>
+                                <MenuItem Header="貼り付け" Command="Paste"/>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=Department}" Value="合計">
+                                        <Setter Property="Background" Value="LightBlue"/>
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Setter Property="Foreground" Value="DarkBlue"/>
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.RowStyle>
+
+
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="会社名" Width="2*" Binding="{Binding Path=Customer}"/>
+
+                            <DataGridTextColumn x:Name="columnMonth4"  Header="年４月" Width="1*" Binding="{Binding Path=Month4, StringFormat={}{0:N0}}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn x:Name="columnMonth5"  Header="年５月" Width="1*" Binding="{Binding Path=Month5, StringFormat={}{0:N0}}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn x:Name="columnMonth6"  Header="年６月" Width="1*" Binding="{Binding Path=Month6, StringFormat={}{0:N0}}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn x:Name="columnMonth7"  Header="年７月" Width="1*" Binding="{Binding Path=Month7, StringFormat={}{0:N0}}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn x:Name="columnMonth8"  Header="年８月" Width="1*" Binding="{Binding Path=Month8, StringFormat={}{0:N0}}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn x:Name="columnMonth9"  Header="年９月" Width="1*" Binding="{Binding Path=Month9, StringFormat={}{0:N0}}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn x:Name="columnMonth10" Header="年１０月" Width="1*" Binding="{Binding Path=Month10, StringFormat={}{0:N0}}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn x:Name="columnMonth11" Header="年１１月" Width="1*" Binding="{Binding Path=Month11, StringFormat={}{0:N0}}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn x:Name="columnMonth12" Header="年１２月" Width="1*" Binding="{Binding Path=Month12, StringFormat={}{0:N0}}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn x:Name="columnMonth1"  Header="年１月" Width="1*" Binding="{Binding Path=Month1, StringFormat={}{0:N0}}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn x:Name="columnMonth2"  Header="年２月" Width="1*" Binding="{Binding Path=Month2, StringFormat={}{0:N0}}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn x:Name="columnMonth3"  Header="年３月" Width="1*" Binding="{Binding Path=Month3, StringFormat={}{0:N0}}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="合計" Width="1*"  Binding="{Binding Path=Sum, StringFormat={}{0:N0}}" IsReadOnly="True">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Setter Property="Foreground" Value="DarkBlue"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="{x:Type DataGridCell}">
+                                        <Setter Property="Background" Value="LightBlue"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTemplateColumn Width="1*" x:Name="colDeleteRow" Header="行削除">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Click="btnDeleteRow_Click" Content="削除"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+                </TabItem>
+<!--
+                <TabItem Name="tabMain" Visibility="Hidden">
+                    <DataGrid x:Name="gridInputData" Grid.Row="0" IsReadOnly="False" AutoGenerateColumns="True" AutoGeneratedColumns="gridInputData_AutoGeneratedColumns" CanUserAddRows="False" FontSize="16"/>
+                </TabItem>
+-->
+            </TabControl>
+
+            <Grid Grid.Column="0" Background="Gainsboro">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="0*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition Height="1.5*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Content="売上管理" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="24"/>
+
+                <Border Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="6" BorderThickness="2" BorderBrush="LightGray" Background="LightGray" CornerRadius="5"/>
+
+                <Label Grid.Row="3" Grid.Column="0" Content="月度" Margin="0,0,10,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontWeight="Bold" Foreground="DarkBlue"/>
+
+                <Label Grid.Row="5" Grid.Column="0" Content="部門" Margin="0,0,10,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontWeight="Bold"  Foreground="DarkBlue"/>
+
+                <Label Grid.Row="7" Grid.Column="0" Content="費タイプ" Margin="0,0,10,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontWeight="Bold" Foreground="DarkBlue" Visibility="Hidden"/>
+
+                <ComboBox x:Name="cbYear" Grid.Column="0" Grid.Row="4" Margin="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" DropDownClosed="cbYear_DropDownClosed" DropDownOpened="cbYear_DropDownOpened"/>
+
+                <ComboBox Name="cbMonth" Grid.Row="4" Grid.Column="0" Margin="5" ItemStringFormat="{}{0:MM/yyyy}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Visibility="Hidden"/>
+
+                <ComboBox Name="cbDepartment" Grid.Row="6" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5" SelectedIndex="0" DropDownOpened="cbDepartment_DropDownOpened" DropDownClosed="cbDepartment_DropDownClosed"/>
+
+                <ComboBox Name="cbCostType" Grid.Row="8" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5" SelectedIndex="0" Visibility="Hidden">
+                    <ComboBoxItem Content="売上" Tag="Sales"/>
+                    <ComboBoxItem Content="費用" Tag="Cost"/>
+                </ComboBox>
+
+                <Border Grid.Row="10" Grid.RowSpan="3" BorderThickness="2" BorderBrush="LightGray" Background="LightGray" CornerRadius="5"/>
+
+                <Button x:Name="btnImport" Grid.Row="10" Grid.Column="1" Margin="5" Content="インポート" Click="btnImport_Click" Background="White" Foreground="DarkBlue" BorderBrush="Gray">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+<!--
+                <Button x:Name="btnSave" Grid.Row="11" Grid.Column="1" Margin="5" Content="システムのデータへ保存" Click="btnSave_Click" Background="White" Foreground="DarkBlue" BorderBrush="DarkBlue" Visibility="Hidden">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button x:Name="btnDataFromDatabase" Grid.Row="12" Grid.Column="1" Margin="5" Content="システムのデータ" Click="btnDataFromDatabase_Click" Background="White" Foreground="DarkBlue" BorderBrush="DarkBlue" Visibility="Hidden">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+                <Button x:Name="btnConvertData" Grid.Row="13" Grid.Column="1" Margin="5" Content="Convert" Click="btnConvertData_Click" Background="White" Foreground="DarkBlue" BorderBrush="DarkBlue" Visibility="Hidden">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+-->
+                <Button x:Name="btnSave" Grid.Row="13" Grid.Column="1" Margin="5" Content="保存" Click="btnSave_Click" Background="CornflowerBlue" Foreground="White" BorderBrush="DarkBlue" FontSize="24" >
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+                <Border Grid.Row="14" Grid.Column="0" Grid.RowSpan="1" BorderThickness="1" BorderBrush="OrangeRed"/>
+
+                <Button x:Name="btnClose" Grid.Row="14" Grid.Column="1" Margin="5" Content="戻る" Click="btnClose_Click" Background="LightSalmon" Foreground="White" BorderBrush="LightCoral" FontSize="24">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+            </Grid>
+
+        </Grid>
+    </Viewbox>
+    
+</Window>

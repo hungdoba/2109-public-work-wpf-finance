@@ -1,0 +1,118 @@
+﻿<Window x:Class="FinanceManagement.Function.WindowSelectConflictValue"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" Loaded="Window_Loaded" WindowState="Maximized"
+        Title="WindowSelectConflictValue" Height="1080" Width="1920">
+    <Window.Resources>
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="FontSize" Value="30"/>
+        </Style>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="30"/>
+        </Style>
+        <Style TargetType="{x:Type DataGrid}">
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FontSize" Value="30"/>
+        </Style>
+        
+        <Style x:Key="datagridMouseHandler" TargetType="{x:Type DataGridRow}">
+            <EventSetter Event="MouseEnter" Handler="MouseEnterHandler"></EventSetter>
+            <EventSetter Event="PreviewMouseDown" Handler="PreviewMouseDownHandler"></EventSetter>
+        </Style>
+        <Style x:Key="SelectDatagrid" TargetType="{x:Type DataGridCell}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="ContentStringFormat" Value="{}{0:N0}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="Blue"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static DataGrid.FocusBorderBrushKey}}"/>
+                </Trigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsSelected" Value="true"/>
+                        <Condition Property="Selector.IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Background" Value="Blue"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                </MultiTrigger>
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Viewbox>
+        <Grid Height="1030" Width="1920">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+
+            <GridSplitter Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Stretch" Width="5" BorderBrush="Black"/>
+
+            <Border Grid.Column="0" Grid.RowSpan="2" Background="Gainsboro" CornerRadius="5"/>
+
+            <Border Grid.Column="2" Grid.RowSpan="2" Background="Gainsboro" CornerRadius="5"/>
+
+            <Label Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="DarkBlue" FontWeight="Bold" Margin="10,0,0,0" Content="新入データ"/>
+
+            <Label Grid.Row="0" Grid.Column="2" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Foreground="DarkBlue" FontWeight="Bold" Margin="10,0,0,0" Content="データベースデータ"/>
+
+            <DataGrid x:Name="gridNewImport" Grid.Row="1" Grid.Column="0" Margin="5" CellStyle="{DynamicResource SelectDatagrid}" RowStyle="{DynamicResource datagridMouseHandler}" CanUserAddRows="False"/>
+
+            <DataGrid x:Name="gridOldData" Grid.Row="1" Grid.Column="2" Margin="5" CellStyle="{DynamicResource SelectDatagrid}" RowStyle="{DynamicResource datagridMouseHandler}" CanUserAddRows="False"/>
+
+            <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="btnConfirm" Grid.Column="1" Margin="5" Content="確認" Click="btnConfirm_Click" Background="CornflowerBlue" Foreground="White" BorderBrush="DarkBlue">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+                <Button x:Name="btnCancel" Grid.Column="2" Margin="5" Content="キャンセル" Click="btnCancel_Click" Background="White" Foreground="DarkBlue" BorderBrush="DarkBlue">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+            </Grid>
+
+        </Grid>
+    </Viewbox>
+</Window>

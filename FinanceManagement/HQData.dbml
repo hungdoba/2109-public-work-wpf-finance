@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="HQData" Class="HQDataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=192.168.0.222;Initial Catalog=HQData;User ID=client" SettingsObjectName="FinanceManagement.Properties.Settings" SettingsPropertyName="HQDataConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.QuotationSynthetic" Member="QuotationSynthetics">
+    <Type Name="QuotationSynthetic">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="QuotationNoYear" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="QuotationNoOrder" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OrderCode" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="MadeTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CustomerName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="WorkPlace" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="WorkName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaterialCostTotal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WorkCostTotal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OverheadExpenseTotal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DiscountTotal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AmountTotal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AmountRecorded" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PaidTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="WorkType" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="Remark" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MMCustomerMaster" Member="MMCustomerMasters">
+    <Type Name="MMCustomerMaster">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ShortName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IsUse" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Remark" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MMFee" Member="MMFees">
+    <Type Name="MMFee">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FeeName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Department" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FeeType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Item" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Field1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field3" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field4" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field5" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field6" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field7" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field8" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field9" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Year" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month4" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month5" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month6" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month7" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month8" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month9" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month10" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month11" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month12" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month2" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month3" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Sum" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Remark" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MMSale" Member="MMSales">
+    <Type Name="MMSale">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Department" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Customer" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Year" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month4" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month5" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month6" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month7" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month8" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month9" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month10" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month11" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month12" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month2" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month3" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Sum" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Remark" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MMRevenue" Member="MMRevenues">
+    <Type Name="MMRevenue">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Department" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Item" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Sumary" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Year" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month4" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month5" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month6" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month7" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month8" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month9" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month10" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month11" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month12" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month2" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Month3" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Sum" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Remark" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MMFeeStruct" Member="MMFeeStructs">
+    <Type Name="MMFeeStruct">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Company" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FeeName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Field1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field3" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field4" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field5" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field6" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field7" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field8" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field9" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Remark" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MMFeeTypeStruct" Member="MMFeeTypeStructs">
+    <Type Name="MMFeeTypeStruct">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FeeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FeeType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Remark" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MMFixedFee" Member="MMFixedFees">
+    <Type Name="MMFixedFee">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FeeName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Department" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FeeType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Item" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Field1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field3" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field4" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field5" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field6" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field7" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field8" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field9" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TimeFrom" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="TimeTo" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Remark" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IsUse" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MMFeeMaster" Member="MMFeeMasters">
+    <Type Name="MMFeeMaster">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FeeName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Item" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Field1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field3" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field4" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field5" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field6" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field7" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field8" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Field9" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HQWork" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="HQ" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Ota" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SDC" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsFixedFee" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TimeFrom" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="TimeTo" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

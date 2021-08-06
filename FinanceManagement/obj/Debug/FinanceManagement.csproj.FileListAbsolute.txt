@@ -1,0 +1,81 @@
+C:\Users\PC3020\source\repos\MonthlyManagement\MonthlyManagement\obj\Debug\FinanceManagement.csprojAssemblyReference.cache
+C:\Users\PC3020\source\repos\MonthlyManagement\MonthlyManagement\obj\Debug\Function\WindowSelectConflictValue.baml
+C:\Users\PC3020\source\repos\MonthlyManagement\MonthlyManagement\obj\Debug\Function\WindowSelectWorkbookSheet.baml
+C:\Users\PC3020\source\repos\MonthlyManagement\MonthlyManagement\obj\Debug\MainWindow.baml
+C:\Users\PC3020\source\repos\MonthlyManagement\MonthlyManagement\obj\Debug\WindowImport.baml
+C:\Users\PC3020\source\repos\MonthlyManagement\MonthlyManagement\obj\Debug\Function\WindowSelectConflictValue.g.cs
+C:\Users\PC3020\source\repos\MonthlyManagement\MonthlyManagement\obj\Debug\Function\WindowSelectWorkbookSheet.g.cs
+C:\Users\PC3020\source\repos\MonthlyManagement\MonthlyManagement\obj\Debug\MainWindow.g.cs
+C:\Users\PC3020\source\repos\MonthlyManagement\MonthlyManagement\obj\Debug\WindowImport.g.cs
+C:\Users\PC3020\source\repos\MonthlyManagement\MonthlyManagement\obj\Debug\App.g.cs
+C:\Users\PC3020\source\repos\MonthlyManagement\MonthlyManagement\obj\Debug\FinanceManagement_MarkupCompile.cache
+C:\Users\PC3020\source\repos\MonthlyManagement\MonthlyManagement\obj\Debug\FinanceManagement.g.resources
+C:\Users\PC3020\source\repos\MonthlyManagement\MonthlyManagement\obj\Debug\FinanceManagement.Properties.Resources.resources
+C:\Users\PC3020\source\repos\MonthlyManagement\MonthlyManagement\obj\Debug\FinanceManagement.csproj.GenerateResource.cache
+C:\Users\PC3020\source\repos\MonthlyManagement\MonthlyManagement\obj\Debug\FinanceManagement.csproj.CoreCompileInputs.cache
+C:\Users\PC3020\source\repos\MonthlyManagement\MonthlyManagement\bin\Debug\FinanceManagement.exe.config
+C:\Users\PC3020\source\repos\MonthlyManagement\MonthlyManagement\bin\Debug\FinanceManagement.exe
+C:\Users\PC3020\source\repos\MonthlyManagement\MonthlyManagement\bin\Debug\FinanceManagement.pdb
+C:\Users\PC3020\source\repos\MonthlyManagement\MonthlyManagement\bin\Debug\ExcelDataReader.DataSet.dll
+C:\Users\PC3020\source\repos\MonthlyManagement\MonthlyManagement\bin\Debug\ExcelDataReader.dll
+C:\Users\PC3020\source\repos\MonthlyManagement\MonthlyManagement\bin\Debug\ExcelDataReader.pdb
+C:\Users\PC3020\source\repos\MonthlyManagement\MonthlyManagement\bin\Debug\ExcelDataReader.xml
+C:\Users\PC3020\source\repos\MonthlyManagement\MonthlyManagement\bin\Debug\ExcelDataReader.DataSet.pdb
+C:\Users\PC3020\source\repos\MonthlyManagement\MonthlyManagement\bin\Debug\ExcelDataReader.DataSet.xml
+C:\Users\PC3020\source\repos\MonthlyManagement\MonthlyManagement\obj\Debug\FinanceManagement.csproj.CopyComplete
+C:\Users\PC3020\source\repos\MonthlyManagement\MonthlyManagement\obj\Debug\FinanceManagement.exe
+C:\Users\PC3020\source\repos\MonthlyManagement\MonthlyManagement\obj\Debug\FinanceManagement.pdb
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\bin\Debug\FinanceManagement.exe.config
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\bin\Debug\FinanceManagement.exe
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\bin\Debug\FinanceManagement.pdb
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\bin\Debug\ExcelDataReader.DataSet.dll
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\bin\Debug\ExcelDataReader.dll
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\bin\Debug\ExcelDataReader.pdb
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\bin\Debug\ExcelDataReader.xml
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\bin\Debug\ExcelDataReader.DataSet.pdb
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\bin\Debug\ExcelDataReader.DataSet.xml
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\Function\WindowSelectConflictValue.baml
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\Function\WindowSelectWorkbookSheet.baml
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\MainWindow.baml
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\Function\WindowSelectConflictValue.g.cs
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\Function\WindowSelectWorkbookSheet.g.cs
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\MainWindow.g.cs
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\App.g.cs
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\FinanceManagement_MarkupCompile.cache
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\FinanceManagement.g.resources
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\FinanceManagement.Properties.Resources.resources
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\FinanceManagement.csproj.GenerateResource.cache
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\FinanceManagement.csproj.CoreCompileInputs.cache
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\FinanceManagement.csproj.CopyComplete
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\FinanceManagement.exe
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\FinanceManagement.pdb
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\UserControl\DatagridSetupMaster.baml
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\UserControl\DatagridSetupMaster.g.cs
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowMaster\WindowCustomerMaster.g.cs
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\FinanceManagement_MarkupCompile.lref
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowMaster\WindowCustomerMaster.baml
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowMaster\WindowMaster.baml
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowMaster\WindowMaster.g.cs
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowReport\WindowFee.baml
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowReport\WindowFee.g.cs
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowReport\WindowSale.baml
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowReport\WindowSale.g.cs
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowReport\WindowRevenue.baml
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowReport\WindowRevenue.g.cs
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\FinanceManagement.csproj.AssemblyReference.cache
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowImport\WindowImportSale.baml
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowImport\WindowImportSale.g.cs
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\bin\Debug\FinanceManagement.exe.manifest
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\bin\Debug\FinanceManagement.application
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\FinanceManagement.TrustInfo.xml
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\FinanceManagement.exe.manifest
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\FinanceManagement.application
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowMaster\WindowSetup.baml
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowMaster\WindowSetup.g.cs
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowMaster\WindowPassword.g.cs
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowMaster\WindowPassword.baml
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowMaster\WindowFeeMaster.baml
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowMaster\WindowFeeMaster.g.cs
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowMaster\WindowFixedFee.baml
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowMaster\WindowFixedFee.g.cs
