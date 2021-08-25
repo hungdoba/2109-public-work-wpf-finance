@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using Microsoft.Win32;
 using System.Collections.Generic;
@@ -22,6 +23,8 @@ namespace FinanceManagement.WindowImport
 
         ObservableCollection<MMSale> mainMMSales;
 
+        ObservableCollection<MMFeeMaster> itemFeeMasters;
+
         public WindowImportSale()
         {
             InitializeComponent();
@@ -32,7 +35,13 @@ namespace FinanceManagement.WindowImport
             setYear();
             setColumnHeader();
             setTabSaleHeader();
-            setCustomerMaster();
+            getItemMaster("売上");
+        }
+
+        private void getItemMaster(string feeName)
+        {
+            itemFeeMasters = DatabaseHandler.GetFeeMaster(feeName);
+            cbCustomer.ItemsSource = itemFeeMasters.Where(x => x.HQWork);
         }
 
         private void setYear()
@@ -65,11 +74,6 @@ namespace FinanceManagement.WindowImport
         private void setTabSaleHeader()
         {
             tabSale.Header = department + "の売上";
-        }
-
-        private void setCustomerMaster()
-        {
-            cbCustomer.ItemsSource = DatabaseHandler.GetCustomerUsed();
         }
 
         private void btnImport_Click(object sender, RoutedEventArgs e)
@@ -189,20 +193,30 @@ namespace FinanceManagement.WindowImport
 
         private void btn_Click(object sender, RoutedEventArgs e)
         {
-            ToggleButton toggleButton = (ToggleButton)sender;
-            if(toggleButton.IsChecked == true)
-            {
-                btnHQ.IsChecked = false;
-                btnOta.IsChecked = false;
-                btnSDC.IsChecked = false;
-                btnHQWork.IsChecked = false;
+            btnHQ.IsChecked = false;
+            btnOta.IsChecked = false;
+            btnHQWork.IsChecked = false;
+            btnSDC.IsChecked = false;
 
-                department = toggleButton.Content.ToString();
-                mainMMSales = new ObservableCollection<MMSale>() ;
-                gridSale.ItemsSource = null;
-                setTabSaleHeader();
-            }
+            ToggleButton toggleButton = (ToggleButton)sender;
             toggleButton.IsChecked = true;
+
+            if(toggleButton.Content.ToString() == "工事")
+            {
+                cbCustomer.ItemsSource = itemFeeMasters.Where(x => x.HQWork);
+            }
+            else if(toggleButton.Content.ToString() == "本社")
+            {
+                cbCustomer.ItemsSource = itemFeeMasters.Where(x => x.HQ);
+            }
+            else if(toggleButton.Content.ToString() == "SDC")
+            {
+                cbCustomer.ItemsSource = itemFeeMasters.Where(x => x.SDC);
+            }
+            else if(toggleButton.Content.ToString() == "太田")
+            {
+                cbCustomer.ItemsSource = itemFeeMasters.Where(x => x.Ota);
+            }
         }
 
         private void btnInsert_Click(object sender, RoutedEventArgs e)

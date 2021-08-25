@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace FinanceManagement.WindowMaster
 {
@@ -17,8 +18,8 @@ namespace FinanceManagement.WindowMaster
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             txtItem.Text = MMFeeMaster.Item;
-            dateFrom.SelectedDate = MMFeeMaster.TimeFrom;
-            dateTo.SelectedDate = MMFeeMaster.TimeTo;
+            dateFrom.SelectedDate = MMFeeMaster.TimeFrom == null || MMFeeMaster.TimeFrom == new DateTime(1900, 1, 1) ? DateTime.Today : MMFeeMaster.TimeFrom;
+            dateTo.SelectedDate =  MMFeeMaster.TimeTo == null || MMFeeMaster.TimeTo == new DateTime(1900, 1, 1) ? DateTime.Today : MMFeeMaster.TimeTo;
             txtAmout.Text = "10000";
         }
 

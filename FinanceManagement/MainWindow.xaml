@@ -78,7 +78,7 @@
             <StackPanel x:Name="stackPanel3" Grid.Row="6" Grid.ColumnSpan="6" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal"/>
             <StackPanel x:Name="stackPanel4" Grid.Row="7" Grid.ColumnSpan="6" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal"/>
 
-            <Button x:Name="btnSetupPassword" Grid.Column="1" Grid.Row="9" Margin="5" Content="パスワード設定" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="btnSetupPassword_Click" BorderBrush="DarkBlue" Background="CornflowerBlue" Foreground="White">
+            <Button x:Name="btnSetupPassword" Grid.Column="0" Grid.Row="9" Margin="5" Content="パスワード設定" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="btnSetupPassword_Click" BorderBrush="DarkBlue" Background="CornflowerBlue" Foreground="White" IsEnabled="False">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
@@ -86,7 +86,15 @@
                 </Button.Resources>
             </Button>
 
-            <Button x:Name="btnSetupMaster" Grid.Column="2" Grid.Row="9" Margin="5" Content="顧客マスター" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="btnSetupMaster_Click" BorderBrush="DarkBlue" Background="CornflowerBlue" Foreground="White">
+            <Button x:Name="btnSetupEmployeeMaster" Grid.Column="1" Grid.Row="9" Margin="5" Content="会社員マスター" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="btnSetupEmployeeMaster_Click" BorderBrush="DarkBlue" Background="CornflowerBlue" Foreground="White" IsEnabled="False">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+            <Button x:Name="btnSetupMaster" Grid.Column="2" Grid.Row="9" Margin="5" Content="顧客マスター（売上）" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="btnSetupMaster_Click" BorderBrush="DarkBlue" Background="CornflowerBlue" Foreground="White">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>

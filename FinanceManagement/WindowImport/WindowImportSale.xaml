@@ -278,7 +278,7 @@
 
                     <Border Grid.Row="12" Grid.RowSpan="3" Grid.Column="0" BorderThickness="1" BorderBrush="DarkBlue"/>
 
-                    <ComboBox x:Name="cbCustomer" Grid.Row="12" Grid.Column="1" Margin="5" VerticalContentAlignment="Center" FontSize="20" HorizontalContentAlignment="Center" Text="会社名" Foreground="Red" IsEditable="True" DisplayMemberPath="Name"/>
+                    <ComboBox x:Name="cbCustomer" Grid.Row="12" Grid.Column="1" Margin="5" VerticalContentAlignment="Center" FontSize="20" HorizontalContentAlignment="Center" Text="会社名" Foreground="Red" IsEditable="True" DisplayMemberPath="Item"/>
 
                     <Button x:Name="btnInsert" Grid.Row="13" Grid.Column="1" Margin="5" Content="挿入" Click="btnInsert_Click" Background="CornflowerBlue" Foreground="White" BorderBrush="DarkBlue" FontSize="24">
                         <Button.Resources>

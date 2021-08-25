@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
+using Microsoft.Office.Interop.Excel;
 
 namespace FinanceManagement.Function
 {
@@ -13,14 +13,14 @@ namespace FinanceManagement.Function
 
         public static void ExportExcelFee(ObservableCollection<MMFee> mMFees)
         {
-            if (mMFees == null) return;
-
+            if (mMFees == null)
+            {
+                return;
+            }
 
             string feeName = mMFees[0].FeeName.ToString();
             string feeType = mMFees[0].FeeType.ToString();
             int year = mMFees[0].Year;
-
-            MMFeeStruct  mMFieldName = DatabaseHandler.GetFieldName(feeName);
 
             Application excelApp = null;
             Workbooks workbooks = null;
@@ -38,68 +38,51 @@ namespace FinanceManagement.Function
                 worksheet = worksheets[1];
 
                 worksheet.PageSetup.Orientation = XlPageOrientation.xlLandscape;
-                worksheet.PageSetup.BottomMargin = 1.9;
-                worksheet.PageSetup.TopMargin = 1.9;
-                worksheet.PageSetup.LeftMargin = 0.6;
-                worksheet.PageSetup.RightMargin = 0.6;
-                worksheet.PageSetup.HeaderMargin = 0.8;
-                worksheet.PageSetup.FooterMargin = 0.8;
                 worksheet.PageSetup.Zoom = false;
                 worksheet.PageSetup.FitToPagesWide = 1;
                 worksheet.PageSetup.FitToPagesTall = false;
 
-                range = worksheet.Range[worksheet.Cells[2, 1], worksheet.Cells[2, 23]];
+                //worksheet.PageSetup.TopMargin = 0.5;
+                //worksheet.PageSetup.BottomMargin = 0.5;
+                //worksheet.PageSetup.LeftMargin = 0.5;
+                //worksheet.PageSetup.RightMargin = 0.5;
+
+                // Insert title
+                range = worksheet.Range[worksheet.Cells[4, 1], worksheet.Cells[4, 23]];
                 range.Cells.HorizontalAlignment = XlHAlign.xlHAlignCenter;
                 range.Merge();
-
-                if (feeType != feeName)
-                    range.Value2 = $"{feeName}（{feeType}）{year}年度";
-                else
-                    range.Value2 = $"{feeName}{year}年度";
+                range.Value2 = feeType != feeName ? (dynamic)$"{feeName}（{feeType}）{year}年度" : (dynamic)$"{feeName}{year}年度";
                 range.Cells.Font.Size = 16; range.Cells.Font.Bold = true;
 
-                range = worksheet.Cells[4, 1]; range.ColumnWidth = 15; range.Value2 = "項目";
-                range = worksheet.Cells[4, 2]; range.ColumnWidth = 0; range.Value2 = mMFieldName.Field1;
-                range = worksheet.Cells[4, 3]; range.ColumnWidth = 0; range.Value2 = mMFieldName.Field2;
-                range = worksheet.Cells[4, 4]; range.ColumnWidth = 0; range.Value2 = mMFieldName.Field3;
-                range = worksheet.Cells[4, 5]; range.ColumnWidth = 0; range.Value2 = mMFieldName.Field4;
-                range = worksheet.Cells[4, 6]; range.ColumnWidth = 0; range.Value2 = mMFieldName.Field5;
-                range = worksheet.Cells[4, 7]; range.ColumnWidth = 0; range.Value2 = mMFieldName.Field6;
-                range = worksheet.Cells[4, 8]; range.ColumnWidth = 0; range.Value2 = mMFieldName.Field7;
-                range = worksheet.Cells[4, 9]; range.ColumnWidth = 0; range.Value2 = mMFieldName.Field8;
-                range = worksheet.Cells[4, 10]; range.ColumnWidth = 0; range.Value2 = mMFieldName.Field9;
-                range = worksheet.Cells[4, 11]; range.ColumnWidth = 8; range.Value2 = year.ToString() + "年４月";
-                range = worksheet.Cells[4, 12]; range.ColumnWidth = 8; range.Value2 = year.ToString() + "年５月";
-                range = worksheet.Cells[4, 13]; range.ColumnWidth = 8; range.Value2 = year.ToString() + "年６月";
-                range = worksheet.Cells[4, 14]; range.ColumnWidth = 8; range.Value2 = year.ToString() + "年７月";
-                range = worksheet.Cells[4, 15]; range.ColumnWidth = 8; range.Value2 = year.ToString() + "年８月";
-                range = worksheet.Cells[4, 16]; range.ColumnWidth = 8; range.Value2 = year.ToString() + "年９月";
-                range = worksheet.Cells[4, 17]; range.ColumnWidth = 8; range.Value2 = year.ToString() + "年１０月";
-                range = worksheet.Cells[4, 18]; range.ColumnWidth = 8; range.Value2 = year.ToString() + "年１１月";
-                range = worksheet.Cells[4, 19]; range.ColumnWidth = 8; range.Value2 = year.ToString() + "年１２月";
-                range = worksheet.Cells[4, 20]; range.ColumnWidth = 8; range.Value2 = (year + 1).ToString() + "年１月";
-                range = worksheet.Cells[4, 21]; range.ColumnWidth = 8; range.Value2 = (year + 1).ToString() + "年２月";
-                range = worksheet.Cells[4, 22]; range.ColumnWidth = 8; range.Value2 = (year + 1).ToString() + "年３月";
-                range = worksheet.Cells[4, 23]; range.ColumnWidth = 8; range.Value2 = "合計";
 
 
-                Marshal.ReleaseComObject(range);
+                _ = Marshal.ReleaseComObject(range);
 
-                int row = 5;
+                // Insert content
+                bool isShowField1 = false;
+                bool isShowField2 = false;
+                bool isShowField3 = false;
+                bool isShowField4 = false;
+                bool isShowField5 = false;
+                bool isShowField6 = false;
+                bool isShowField7 = false;
+                bool isShowField8 = false;
+                bool isShowField9 = false;
 
-                foreach (var mMFee in mMFees)
+                int row = 7;
+                foreach (MMFee mMFee in mMFees)
                 {
                     range = worksheet.Cells[row, 1]; range.Value2 = mMFee.Item;
 
-                    if(!string.IsNullOrEmpty(mMFee.Field1)) { range = worksheet.Cells[row, 2];  range.Value2 = mMFee.Field1; range.ColumnWidth = 8; }
-                    if(!string.IsNullOrEmpty(mMFee.Field2)) { range = worksheet.Cells[row, 3];  range.Value2 = mMFee.Field2; range.ColumnWidth = 8; }
-                    if(!string.IsNullOrEmpty(mMFee.Field3)) { range = worksheet.Cells[row, 4];  range.Value2 = mMFee.Field3; range.ColumnWidth = 8; }
-                    if(!string.IsNullOrEmpty(mMFee.Field4)) { range = worksheet.Cells[row, 5];  range.Value2 = mMFee.Field4; range.ColumnWidth = 8; }
-                    if(!string.IsNullOrEmpty(mMFee.Field5)) { range = worksheet.Cells[row, 6];  range.Value2 = mMFee.Field5; range.ColumnWidth = 8; }
-                    if(!string.IsNullOrEmpty(mMFee.Field6)) { range = worksheet.Cells[row, 7];  range.Value2 = mMFee.Field6; range.ColumnWidth = 8; }
-                    if(!string.IsNullOrEmpty(mMFee.Field7)) { range = worksheet.Cells[row, 8];  range.Value2 = mMFee.Field7; range.ColumnWidth = 8; }
-                    if(!string.IsNullOrEmpty(mMFee.Field8)) { range = worksheet.Cells[row, 9];  range.Value2 = mMFee.Field8; range.ColumnWidth = 8; }
-                    if(!string.IsNullOrEmpty(mMFee.Field9)) { range = worksheet.Cells[row, 10]; range.Value2 = mMFee.Field9; range.ColumnWidth = 8; }
+                    if (!string.IsNullOrEmpty(mMFee.Field1)) { range = worksheet.Cells[row, 2]; range.Value2 = mMFee.Field1; range.NumberFormat = "#"; isShowField1 = true; }
+                    if (!string.IsNullOrEmpty(mMFee.Field2)) { range = worksheet.Cells[row, 3]; range.Value2 = mMFee.Field2; range.NumberFormat = "#"; isShowField2 = true; }
+                    if (!string.IsNullOrEmpty(mMFee.Field3)) { range = worksheet.Cells[row, 4]; range.Value2 = mMFee.Field3; range.NumberFormat = "#"; isShowField3 = true; }
+                    if (!string.IsNullOrEmpty(mMFee.Field4)) { range = worksheet.Cells[row, 5]; range.Value2 = mMFee.Field4; range.NumberFormat = "#"; isShowField4 = true; }
+                    if (!string.IsNullOrEmpty(mMFee.Field5)) { range = worksheet.Cells[row, 6]; range.Value2 = mMFee.Field5; range.NumberFormat = "#"; isShowField5 = true; }
+                    if (!string.IsNullOrEmpty(mMFee.Field6)) { range = worksheet.Cells[row, 7]; range.Value2 = mMFee.Field6; range.NumberFormat = "#"; isShowField6 = true; }
+                    if (!string.IsNullOrEmpty(mMFee.Field7)) { range = worksheet.Cells[row, 8]; range.Value2 = mMFee.Field7; range.NumberFormat = "#"; isShowField7 = true; }
+                    if (!string.IsNullOrEmpty(mMFee.Field8)) { range = worksheet.Cells[row, 9]; range.Value2 = mMFee.Field8; range.NumberFormat = "#"; isShowField8 = true; }
+                    if (!string.IsNullOrEmpty(mMFee.Field9)) { range = worksheet.Cells[row, 10];range.Value2 = mMFee.Field9; range.NumberFormat = "#"; isShowField9 = true; }
 
                     range = worksheet.Cells[row, 11]; range.Value2 = mMFee.Month4; range.NumberFormat = "#,#";
                     range = worksheet.Cells[row, 12]; range.Value2 = mMFee.Month5; range.NumberFormat = "#,#";
@@ -123,24 +106,54 @@ namespace FinanceManagement.Function
 
                     row++;
 
-                    Marshal.ReleaseComObject(range);
+                    _ = Marshal.ReleaseComObject(range);
 
                 }
+
+                // Insert header
+                MMFeeStruct mMFieldName = DatabaseHandler.GetFieldName(feeName);
+
+                range = worksheet.Cells[6, 1]; range.ColumnWidth = 15; range.Value2 = "項目";
+
+                range = worksheet.Range[worksheet.Cells[6, 1], worksheet.Cells[6, 10]]; range.ColumnWidth = 0;
+                if (isShowField1) { range = worksheet.Cells[6, 2]; range.ColumnWidth = 8; range.Value2 = mMFieldName.Field1;}
+                if (isShowField2) { range = worksheet.Cells[6, 3]; range.ColumnWidth = 8; range.Value2 = mMFieldName.Field2;}
+                if (isShowField3) { range = worksheet.Cells[6, 4]; range.ColumnWidth = 8; range.Value2 = mMFieldName.Field3;}
+                if (isShowField4) { range = worksheet.Cells[6, 5]; range.ColumnWidth = 8; range.Value2 = mMFieldName.Field4;}
+                if (isShowField5) { range = worksheet.Cells[6, 6]; range.ColumnWidth = 8; range.Value2 = mMFieldName.Field5;}
+                if (isShowField6) { range = worksheet.Cells[6, 7]; range.ColumnWidth = 8; range.Value2 = mMFieldName.Field6;}
+                if (isShowField7) { range = worksheet.Cells[6, 8]; range.ColumnWidth = 8; range.Value2 = mMFieldName.Field7;}
+                if (isShowField8) { range = worksheet.Cells[6, 9]; range.ColumnWidth = 8; range.Value2 = mMFieldName.Field8;}
+                if (isShowField9) { range = worksheet.Cells[6, 10]; range.ColumnWidth = 8; range.Value2 = mMFieldName.Field9;}
+
+                range = worksheet.Cells[6, 11]; range.ColumnWidth = 8; range.Value2 = year.ToString() + "年4月";
+                range = worksheet.Cells[6, 12]; range.ColumnWidth = 8; range.Value2 = year.ToString() + "年5月";
+                range = worksheet.Cells[6, 13]; range.ColumnWidth = 8; range.Value2 = year.ToString() + "年6月";
+                range = worksheet.Cells[6, 14]; range.ColumnWidth = 8; range.Value2 = year.ToString() + "年7月";
+                range = worksheet.Cells[6, 15]; range.ColumnWidth = 8; range.Value2 = year.ToString() + "年8月";
+                range = worksheet.Cells[6, 16]; range.ColumnWidth = 8; range.Value2 = year.ToString() + "年9月";
+                range = worksheet.Cells[6, 17]; range.ColumnWidth = 8; range.Value2 = year.ToString() + "年10月";
+                range = worksheet.Cells[6, 18]; range.ColumnWidth = 8; range.Value2 = year.ToString() + "年11月";
+                range = worksheet.Cells[6, 19]; range.ColumnWidth = 8; range.Value2 = year.ToString() + "年12月";
+                range = worksheet.Cells[6, 20]; range.ColumnWidth = 8; range.Value2 = (year + 1).ToString() + "年1月";
+                range = worksheet.Cells[6, 21]; range.ColumnWidth = 8; range.Value2 = (year + 1).ToString() + "年2月";
+                range = worksheet.Cells[6, 22]; range.ColumnWidth = 8; range.Value2 = (year + 1).ToString() + "年3月";
+                range = worksheet.Cells[6, 23]; range.ColumnWidth = 8; range.Value2 = "合計";
 
                 int lastRow = 0;
                 lastRow = worksheet.Cells.SpecialCells(XlCellType.xlCellTypeLastCell).Row;
 
-                range = worksheet.Range[worksheet.Cells[4, 1], worksheet.Cells[lastRow, 23]];
+                range = worksheet.Range[worksheet.Cells[6, 1], worksheet.Cells[lastRow, 23]];
                 range.Cells.Font.Size = 8;
                 range.Cells.HorizontalAlignment = XlHAlign.xlHAlignRight;
                 range.Cells.VerticalAlignment = XlHAlign.xlHAlignCenter;
                 range.Borders.LineStyle = XlLineStyle.xlContinuous;
                 range.Columns.AutoFit();
 
-                range = worksheet.Range[worksheet.Cells[4, 1], worksheet.Cells[lastRow, 2]];
+                range = worksheet.Range[worksheet.Cells[6, 1], worksheet.Cells[lastRow, 2]];
                 range.Cells.HorizontalAlignment = XlHAlign.xlHAlignCenter;
 
-                range = worksheet.Rows[4];
+                range = worksheet.Rows[6];
                 range.Cells.HorizontalAlignment = XlHAlign.xlHAlignCenter;
 
                 excelApp.Visible = true;
@@ -154,12 +167,35 @@ namespace FinanceManagement.Function
             }
             finally
             {
-                if (range != null) Marshal.ReleaseComObject(range);
-                if (worksheet != null) Marshal.ReleaseComObject(worksheet);
-                if (worksheets != null) Marshal.ReleaseComObject(worksheets);
-                if (workbook != null) Marshal.ReleaseComObject(workbook);
-                if (workbooks != null) Marshal.ReleaseComObject(workbooks);
-                if (excelApp != null) Marshal.ReleaseComObject(excelApp);
+                if (range != null)
+                {
+                    _ = Marshal.ReleaseComObject(range);
+                }
+
+                if (worksheet != null)
+                {
+                    _ = Marshal.ReleaseComObject(worksheet);
+                }
+
+                if (worksheets != null)
+                {
+                    _ = Marshal.ReleaseComObject(worksheets);
+                }
+
+                if (workbook != null)
+                {
+                    _ = Marshal.ReleaseComObject(workbook);
+                }
+
+                if (workbooks != null)
+                {
+                    _ = Marshal.ReleaseComObject(workbooks);
+                }
+
+                if (excelApp != null)
+                {
+                    _ = Marshal.ReleaseComObject(excelApp);
+                }
             }
         }
 
@@ -200,48 +236,48 @@ namespace FinanceManagement.Function
                 worksheet.PageSetup.FitToPagesWide = 1;
                 worksheet.PageSetup.FitToPagesTall = false;
 
-                range = worksheet.Range[worksheet.Cells[2, 1], worksheet.Cells[2, 14]];
+                // Insert title
+                range = worksheet.Range[worksheet.Cells[4, 1], worksheet.Cells[4, 14]];
                 range.Cells.HorizontalAlignment = XlHAlign.xlHAlignCenter;
                 range.Merge(); range.Value2 = $"売上{year}年度";
                 range.Cells.Font.Size = 16; range.Cells.Font.Bold = true;
 
-                range = worksheet.Cells[4, 1]; range.ColumnWidth = 15; range.Value2 = "会社名";
-                range = worksheet.Cells[4, 2]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年４月";
-                range = worksheet.Cells[4, 3]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年５月";
-                range = worksheet.Cells[4, 4]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年６月";
-                range = worksheet.Cells[4, 5]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年７月";
-                range = worksheet.Cells[4, 6]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年８月";
-                range = worksheet.Cells[4, 7]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年９月";
-                range = worksheet.Cells[4, 8]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年１０月";
-                range = worksheet.Cells[4, 9]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年１１月";
-                range = worksheet.Cells[4, 10]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年１２月"; ;
-                range = worksheet.Cells[4, 11]; range.ColumnWidth = 8; range.Value2 = (year + 1).ToString() + "年１月";
-                range = worksheet.Cells[4, 12]; range.ColumnWidth = 8; range.Value2 = (year + 1).ToString() + "年２月";
-                range = worksheet.Cells[4, 13]; range.ColumnWidth = 8; range.Value2 = (year + 1).ToString() + "年３月";
-                range = worksheet.Cells[4, 14]; range.ColumnWidth = 8; range.Value2 = "合計";
+                range = worksheet.Cells[6, 1]; range.ColumnWidth = 15; range.Value2 = "会社名";
+                range = worksheet.Cells[6, 2]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年4月";
+                range = worksheet.Cells[6, 3]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年5月";
+                range = worksheet.Cells[6, 4]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年6月";
+                range = worksheet.Cells[6, 5]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年7月";
+                range = worksheet.Cells[6, 6]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年8月";
+                range = worksheet.Cells[6, 7]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年9月";
+                range = worksheet.Cells[6, 8]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年10月";
+                range = worksheet.Cells[6, 9]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年11月";
+                range = worksheet.Cells[6, 10]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年12月"; ;
+                range = worksheet.Cells[6, 11]; range.ColumnWidth = 8; range.Value2 = (year + 1).ToString() + "年1月";
+                range = worksheet.Cells[6, 12]; range.ColumnWidth = 8; range.Value2 = (year + 1).ToString() + "年2月";
+                range = worksheet.Cells[6, 13]; range.ColumnWidth = 8; range.Value2 = (year + 1).ToString() + "年3月";
+                range = worksheet.Cells[6, 14]; range.ColumnWidth = 8; range.Value2 = "合計";
 
 
                 Marshal.ReleaseComObject(range);
 
-                int row = 5;
+                int row = 7;
 
                 foreach (var mMSale in mMSales)
                 {
-                    range = worksheet.Cells[row, 1]; range.Value2 = mMSale.Customer;range.NumberFormat = "#,#";
-                    range = worksheet.Cells[row, 2]; range.Value2 = mMSale.Month4;range.NumberFormat = "#,#";
-                    range = worksheet.Cells[row, 3]; range.Value2 = mMSale.Month5;range.NumberFormat = "#,#";
-                    range = worksheet.Cells[row, 4]; range.Value2 = mMSale.Month6;range.NumberFormat = "#,#";
-                    range = worksheet.Cells[row, 5]; range.Value2 = mMSale.Month7;range.NumberFormat = "#,#";
-                    range = worksheet.Cells[row, 6]; range.Value2 = mMSale.Month8;range.NumberFormat = "#,#";
-                    range = worksheet.Cells[row, 7]; range.Value2 = mMSale.Month9;range.NumberFormat = "#,#";
-                    range = worksheet.Cells[row, 8]; range.Value2 = mMSale.Month10;range.NumberFormat = "#,#";
-                    range = worksheet.Cells[row, 9]; range.Value2 = mMSale.Month11;range.NumberFormat = "#,#";
-                    range = worksheet.Cells[row, 10]; range.Value2 = mMSale.Month12;range.NumberFormat = "#,#";
-                    range = worksheet.Cells[row, 11]; range.Value2 = mMSale.Month1;range.NumberFormat = "#,#";
-                    range = worksheet.Cells[row, 12]; range.Value2 = mMSale.Month2;range.NumberFormat = "#,#";
-                    range = worksheet.Cells[row, 13]; range.Value2 = mMSale.Month3;range.NumberFormat = "#,#";
-                    range = worksheet.Cells[row, 14]; range.Value2 = mMSale.Sum;range.NumberFormat = "#,#";
-
+                    range = worksheet.Cells[row, 1]; range.Value2 = mMSale.Customer; range.NumberFormat = "#,#";
+                    range = worksheet.Cells[row, 2]; range.Value2 = mMSale.Month4; range.NumberFormat = "#,#";
+                    range = worksheet.Cells[row, 3]; range.Value2 = mMSale.Month5; range.NumberFormat = "#,#";
+                    range = worksheet.Cells[row, 4]; range.Value2 = mMSale.Month6; range.NumberFormat = "#,#";
+                    range = worksheet.Cells[row, 5]; range.Value2 = mMSale.Month7; range.NumberFormat = "#,#";
+                    range = worksheet.Cells[row, 6]; range.Value2 = mMSale.Month8; range.NumberFormat = "#,#";
+                    range = worksheet.Cells[row, 7]; range.Value2 = mMSale.Month9; range.NumberFormat = "#,#";
+                    range = worksheet.Cells[row, 8]; range.Value2 = mMSale.Month10; range.NumberFormat = "#,#";
+                    range = worksheet.Cells[row, 9]; range.Value2 = mMSale.Month11; range.NumberFormat = "#,#";
+                    range = worksheet.Cells[row, 10]; range.Value2 = mMSale.Month12; range.NumberFormat = "#,#";
+                    range = worksheet.Cells[row, 11]; range.Value2 = mMSale.Month1; range.NumberFormat = "#,#";
+                    range = worksheet.Cells[row, 12]; range.Value2 = mMSale.Month2; range.NumberFormat = "#,#";
+                    range = worksheet.Cells[row, 13]; range.Value2 = mMSale.Month3; range.NumberFormat = "#,#";
+                    range = worksheet.Cells[row, 14]; range.Value2 = mMSale.Sum; range.NumberFormat = "#,#";
 
                     if (mMSale.Department == "合計")
                     {
@@ -250,24 +286,24 @@ namespace FinanceManagement.Function
 
                     row++;
 
-                    Marshal.ReleaseComObject(range);
+                    _ = Marshal.ReleaseComObject(range);
 
                 }
 
                 int lastRow = 0;
                 lastRow = worksheet.Cells.SpecialCells(XlCellType.xlCellTypeLastCell).Row;
 
-                range = worksheet.Range[worksheet.Cells[4, 1], worksheet.Cells[lastRow, 14]];
+                range = worksheet.Range[worksheet.Cells[6, 1], worksheet.Cells[lastRow, 14]];
                 range.Cells.Font.Size = 8;
                 range.Cells.HorizontalAlignment = XlHAlign.xlHAlignRight;
                 range.Cells.VerticalAlignment = XlHAlign.xlHAlignCenter;
                 range.Borders.LineStyle = XlLineStyle.xlContinuous;
                 range.Columns.AutoFit();
 
-                range = worksheet.Range[worksheet.Cells[4, 1], worksheet.Cells[lastRow, 2]];
+                range = worksheet.Range[worksheet.Cells[6, 1], worksheet.Cells[lastRow, 2]];
                 range.Cells.HorizontalAlignment = XlHAlign.xlHAlignCenter;
 
-                range = worksheet.Rows[4];
+                range = worksheet.Rows[6];
                 range.Cells.HorizontalAlignment = XlHAlign.xlHAlignCenter;
 
                 excelApp.Visible = true;
@@ -289,7 +325,6 @@ namespace FinanceManagement.Function
                 if (excelApp != null) Marshal.ReleaseComObject(excelApp);
             }
         }
-
 
         public static ObservableCollection<MMSale> GetExcelMMSale(string fileName, int year, string department)
         {
@@ -472,7 +507,10 @@ namespace FinanceManagement.Function
 
         public static void ExportExcelRevenue(ObservableCollection<MMRevenue> mMRevenues)
         {
-            if (mMRevenues == null) return;
+            if (mMRevenues == null)
+            {
+                return;
+            }
 
             int year = mMRevenues[0].Year;
 
@@ -502,31 +540,31 @@ namespace FinanceManagement.Function
                 worksheet.PageSetup.FitToPagesWide = 1;
                 worksheet.PageSetup.FitToPagesTall = false;
 
-                range = worksheet.Range[worksheet.Cells[2, 1], worksheet.Cells[2, 14]];
+                range = worksheet.Range[worksheet.Cells[4, 1], worksheet.Cells[4, 14]];
                 range.Cells.HorizontalAlignment = XlHAlign.xlHAlignCenter;
                 range.Merge(); range.Value2 = $"収支報告{year}年度";
                 range.Cells.Font.Size = 16; range.Cells.Font.Bold = true;
 
-                range = worksheet.Cells[4, 1]; range.ColumnWidth = 15; range.Value2 = "項目";
-                range = worksheet.Cells[4, 2]; range.ColumnWidth = 15; range.Value2 = "摘要";
-                range = worksheet.Cells[4, 3]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年４月";
-                range = worksheet.Cells[4, 4]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年５月";
-                range = worksheet.Cells[4, 5]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年６月";
-                range = worksheet.Cells[4, 6]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年７月";
-                range = worksheet.Cells[4, 7]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年８月";
-                range = worksheet.Cells[4, 8]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年９月";
-                range = worksheet.Cells[4, 9]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年１０月";
-                range = worksheet.Cells[4, 10]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年１１月";
-                range = worksheet.Cells[4, 11]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年１２月"; ;
-                range = worksheet.Cells[4, 12]; range.ColumnWidth = 8; range.Value2 = (year + 1).ToString() + "年１月";
-                range = worksheet.Cells[4, 13]; range.ColumnWidth = 8; range.Value2 = (year + 1).ToString() + "年２月";
-                range = worksheet.Cells[4, 14]; range.ColumnWidth = 8; range.Value2 = (year + 1).ToString() + "年３月";
-                range = worksheet.Cells[4, 15]; range.ColumnWidth = 8; range.Value2 = "合計";
+                range = worksheet.Cells[6, 1]; range.ColumnWidth = 15; range.Value2 = "項目";
+                range = worksheet.Cells[6, 2]; range.ColumnWidth = 15; range.Value2 = "摘要";
+                range = worksheet.Cells[6, 3]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年4月";
+                range = worksheet.Cells[6, 4]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年5月";
+                range = worksheet.Cells[6, 5]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年6月";
+                range = worksheet.Cells[6, 6]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年7月";
+                range = worksheet.Cells[6, 7]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年8月";
+                range = worksheet.Cells[6, 8]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年9月";
+                range = worksheet.Cells[6, 9]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年10月";
+                range = worksheet.Cells[6, 10]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年11月";
+                range = worksheet.Cells[6, 11]; range.ColumnWidth = 0; range.Value2 = year.ToString() + "年12月"; ;
+                range = worksheet.Cells[6, 12]; range.ColumnWidth = 8; range.Value2 = (year + 1).ToString() + "年1月";
+                range = worksheet.Cells[6, 13]; range.ColumnWidth = 8; range.Value2 = (year + 1).ToString() + "年2月";
+                range = worksheet.Cells[6, 14]; range.ColumnWidth = 8; range.Value2 = (year + 1).ToString() + "年3月";
+                range = worksheet.Cells[6, 15]; range.ColumnWidth = 8; range.Value2 = "合計";
 
 
                 Marshal.ReleaseComObject(range);
 
-                int row = 5;
+                int row = 7;
 
                 foreach (var mMRevenue in mMRevenues)
                 {
@@ -561,17 +599,17 @@ namespace FinanceManagement.Function
                 int lastRow = 0;
                 lastRow = worksheet.Cells.SpecialCells(XlCellType.xlCellTypeLastCell).Row;
 
-                range = worksheet.Range[worksheet.Cells[4, 1], worksheet.Cells[lastRow, 15]];
+                range = worksheet.Range[worksheet.Cells[6, 1], worksheet.Cells[lastRow, 15]];
                 range.Cells.Font.Size = 8;
                 range.Cells.HorizontalAlignment = XlHAlign.xlHAlignRight;
                 range.Cells.VerticalAlignment = XlHAlign.xlHAlignCenter;
                 range.Borders.LineStyle = XlLineStyle.xlContinuous;
                 range.Columns.AutoFit();
 
-                range = worksheet.Range[worksheet.Cells[4, 1], worksheet.Cells[lastRow, 2]];
+                range = worksheet.Range[worksheet.Cells[6, 1], worksheet.Cells[lastRow, 2]];
                 range.Cells.HorizontalAlignment = XlHAlign.xlHAlignCenter;
 
-                range = worksheet.Rows[4];
+                range = worksheet.Rows[6];
                 range.Cells.HorizontalAlignment = XlHAlign.xlHAlignCenter;
 
                 excelApp.Visible = true;
@@ -595,5 +633,6 @@ namespace FinanceManagement.Function
         }
 
         #endregion
+
     }
 }

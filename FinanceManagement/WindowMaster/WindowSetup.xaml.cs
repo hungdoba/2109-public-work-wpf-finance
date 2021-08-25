@@ -454,5 +454,11 @@ namespace FinanceManagement.WindowReport
             }
 
         }
+
+        private void btnShowMaster_Click(object sender, RoutedEventArgs e)
+        {
+            WindowMasterAll windowMasterAll = new WindowMasterAll();
+            _ = windowMasterAll.ShowDialog();
+        }
     }
 }

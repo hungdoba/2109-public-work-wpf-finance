@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using FinanceManagement.Class;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -8,204 +7,6 @@ namespace FinanceManagement.Function
 {
     public static class DatabaseHandler
     {
-
-        #region MMCustomerMaster
-
-        public static List<MMCustomerMaster> GetCustomerUsed()
-        {
-            HQDataDataContext hQDataDataContext = new HQDataDataContext();
-
-            IQueryable<MMCustomerMaster> customerUseds = from temp in hQDataDataContext.MMCustomerMasters
-                                                         where temp.IsUse
-                                                         select temp;
-
-            if (customerUseds == null)
-                return null;
-            return customerUseds.ToList();
-        }
-
-        public static List<MMCustomerMaster>[] GetCustomerMaster()
-        {
-            HQDataDataContext hQDataDataContext = new HQDataDataContext();
-
-            var customerUseds = from temp in hQDataDataContext.MMCustomerMasters
-                                where temp.IsUse == true
-                                select temp;
-
-            var customerUseless = from temp in hQDataDataContext.MMCustomerMasters
-                                where temp.IsUse == false
-                                select temp;
-
-            List<MMCustomerMaster>[] customerMasters = {customerUseds.ToList(), customerUseless.ToList() };
-            return customerMasters;
-        }
-
-        #endregion
-
-
-        #region FixedFee
-
-        public static List<string> GetDepartmentMaster()
-        {
-            return new List<string>()
-            {
-                "全部",
-                "工事",
-                "太田",
-                "SDC",
-                "本社",
-            };
-        }
-
-        public static ObservableCollection<MMFixedFee> GetFixedFee(string feeName, string feeType, string department)
-        {
-            HQDataDataContext hQDataDataContext = new HQDataDataContext();
-
-            var result = hQDataDataContext.MMFixedFees.Where(x => x.FeeName == feeName && x.FeeType == feeType && x.Department == department).ToList();
-
-            if(result.Count == 0)
-            {
-                return null;
-            }
-
-            return new ObservableCollection<MMFixedFee>(result);
-        }
-
-        public static List<MMFixedFee> GetFixedFee()
-        {
-            HQDataDataContext hQDataDataContext = new HQDataDataContext();
-            return hQDataDataContext.MMFixedFees.ToList();
-        }
-
-
-        public static ObservableCollection<MMFee> GetFixedFee(string feeName, string feeType, int yearNow)
-        {
-            HQDataDataContext hQDataDataContext = new HQDataDataContext();
-
-            List<MMFee> mMFees = new List<MMFee>();
-
-            if(string.IsNullOrEmpty(feeType))
-            {
-                feeType = feeName;
-            }
-
-            var result = hQDataDataContext.MMFixedFees.Where(x => x.FeeName == feeName && x.FeeType == feeType).ToList();
-
-            foreach(var temp in result)
-            {
-                int yearFrom = temp.TimeFrom.Year;
-                int monthFrom = temp.TimeFrom.Month;
-
-                int yearTo = temp.TimeTo.Year;
-                int monthTo = temp.TimeTo.Month;
-
-                MMFee mMFee = new MMFee()
-                {
-                    FeeName = temp.FeeName,
-                    Department = temp.Department,
-                    FeeType = temp.FeeType,
-                    Item = temp.Item,
-                    Field1 = temp.Field1,
-                    Field2 = temp.Field2,
-                    Field3 = temp.Field3,
-                    Field4 = temp.Field4,
-                    Field5 = temp.Field5,
-                    Field6 = temp.Field6,
-                    Field7 = temp.Field7,
-                    Field8 = temp.Field8,
-                    Field9 = temp.Field9,
-                    Year = yearNow,
-                    Month1 = ((yearTo * 12 + monthTo - (yearNow + 1) * 12 - 1 >= 0) && ((yearNow + 1) * 12 + 1 - yearFrom * 12 - monthFrom >= 0)) ? temp.Amount : 0,
-                    Month2 = ((yearTo * 12 + monthTo - (yearNow + 1) * 12 - 2 >= 0) && ((yearNow + 1) * 12 + 2 - yearFrom * 12 - monthFrom >= 0)) ? temp.Amount : 0,
-                    Month3 = ((yearTo * 12 + monthTo - (yearNow + 1) * 12 - 3 >= 0) && ((yearNow + 1) * 12 + 3 - yearFrom * 12 - monthFrom >= 0)) ? temp.Amount : 0,
-                    Month4 = ((yearTo * 12 + monthTo - yearNow * 12 - 4 >= 0) && (yearNow * 12 + 4 - yearFrom * 12 - monthFrom >= 0)) ? temp.Amount : 0,
-                    Month5 = ((yearTo * 12 + monthTo - yearNow * 12 - 5 >= 0) && (yearNow * 12 + 5 - yearFrom * 12 - monthFrom >= 0)) ? temp.Amount : 0,
-                    Month6 = ((yearTo * 12 + monthTo - yearNow * 12 - 6 >= 0) && (yearNow * 12 + 6 - yearFrom * 12 - monthFrom >= 0)) ? temp.Amount : 0,
-                    Month7 = ((yearTo * 12 + monthTo - yearNow * 12 - 7 >= 0) && (yearNow * 12 + 7 - yearFrom * 12 - monthFrom >= 0)) ? temp.Amount : 0,
-                    Month8 = ((yearTo * 12 + monthTo - yearNow * 12 - 8 >= 0) && (yearNow * 12 + 8 - yearFrom * 12 - monthFrom >= 0)) ? temp.Amount : 0,
-                    Month9 = ((yearTo * 12 + monthTo - yearNow * 12 - 9 >= 0) && (yearNow * 12 + 9 - yearFrom * 12 - monthFrom >= 0)) ? temp.Amount : 0,
-                    Month10 = ((yearTo * 12 + monthTo - yearNow * 12 - 10 >= 0) && (yearNow * 12 + 10 - yearFrom * 12 - monthFrom >= 0)) ? temp.Amount : 0,
-                    Month11 = ((yearTo * 12 + monthTo - yearNow * 12 - 11 >= 0) && (yearNow * 12 + 11 - yearFrom * 12 - monthFrom >= 0)) ? temp.Amount : 0,
-                    Month12 = ((yearTo * 12 + monthTo - yearNow * 12 - 12 >= 0) && (yearNow * 12 + 12 - yearFrom * 12 - monthFrom >= 0)) ? temp.Amount : 0,
-                };
-
-                mMFee.Sum = mMFee.Month1 + mMFee.Month2 + mMFee.Month3 + mMFee.Month4 + mMFee.Month5 + mMFee.Month6 + mMFee.Month7 + mMFee.Month8 + mMFee.Month9 + mMFee.Month10 + mMFee.Month11 + mMFee.Month12;
-
-                mMFees.Add(mMFee);
-            }
-
-            return result.Count == 0 ? null : AddSumToMMFee(feeName, feeType, yearNow, mMFees);
-        }
-
-
-        public static bool DeleteFixedFee(string feeName, string feeType, string department)
-        {
-            try
-            {
-                HQDataDataContext hQDataDataContext = new HQDataDataContext();
-
-                var deleteValues = hQDataDataContext.MMFixedFees.Where(x => x.FeeName == feeName && x.Department == department && x.FeeType == feeType);
-
-                foreach (var temp in deleteValues)
-                {
-                    hQDataDataContext.MMFixedFees.DeleteOnSubmit(temp);
-                }
-
-                hQDataDataContext.SubmitChanges();
-
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-
-        public static bool OverwriteFixedFee(ObservableCollection<MMFixedFee> mMFixedFees)
-        {
-            try
-            {
-                if (mMFixedFees == null) return false;
-
-                MMFixedFee mMFixedFee = mMFixedFees.FirstOrDefault();
-
-                HQDataDataContext hQDataDataContext = new HQDataDataContext();
-
-                var deleteValues = hQDataDataContext.MMFixedFees.Where(x => x.FeeName == mMFixedFee.FeeName && x.Department == mMFixedFee.Department && x.FeeType == mMFixedFee.FeeType); // && x.Item == mMFixedFee.Item);
-
-                //if (mMFixedFee.Field1 != null) { deleteValues = deleteValues.Where(x => x.Field1 == mMFixedFee.Field1); }
-                //if (mMFixedFee.Field2 != null) { deleteValues = deleteValues.Where(x => x.Field2 == mMFixedFee.Field2); }
-                //if (mMFixedFee.Field3 != null) { deleteValues = deleteValues.Where(x => x.Field3 == mMFixedFee.Field3); }
-                //if (mMFixedFee.Field4 != null) { deleteValues = deleteValues.Where(x => x.Field4 == mMFixedFee.Field4); }
-                //if (mMFixedFee.Field5 != null) { deleteValues = deleteValues.Where(x => x.Field5 == mMFixedFee.Field5); }
-                //if (mMFixedFee.Field6 != null) { deleteValues = deleteValues.Where(x => x.Field6 == mMFixedFee.Field6); }
-                //if (mMFixedFee.Field7 != null) { deleteValues = deleteValues.Where(x => x.Field7 == mMFixedFee.Field7); }
-                //if (mMFixedFee.Field8 != null) { deleteValues = deleteValues.Where(x => x.Field8 == mMFixedFee.Field8); }
-                //if (mMFixedFee.Field9 != null) { deleteValues = deleteValues.Where(x => x.Field9 == mMFixedFee.Field9); }
-
-                foreach (var temp in deleteValues)
-                {
-                    hQDataDataContext.MMFixedFees.DeleteOnSubmit(temp);
-                }
-
-                foreach (var temp in mMFixedFees)
-                {
-                    hQDataDataContext.MMFixedFees.InsertOnSubmit(temp);
-                }
-
-                hQDataDataContext.SubmitChanges();
-
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        #endregion
-
 
         #region MMFee
 
@@ -346,7 +147,6 @@ namespace FinanceManagement.Function
             //return workFees;
         }
 
-
         public static ObservableCollection<MMFee> AddSumToMMFee(string feeName, string feeType, int year, List<MMFee> mMFees)
         {
             ObservableCollection<MMFee> workFees = new ObservableCollection<MMFee>();
@@ -465,7 +265,6 @@ namespace FinanceManagement.Function
             return workFees;
         }
 
-
         public static ObservableCollection<MMFeeTypeStruct> GetFeeTypeStruct(string FeeName)
         {
             if (string.IsNullOrEmpty(FeeName)) return null;
@@ -482,47 +281,54 @@ namespace FinanceManagement.Function
             return new ObservableCollection<MMFeeTypeStruct>(query);
         }
 
-        public static ObservableCollection<MMFee> AutoGetFee(string feeName, string feeType, int year )
-        {
 
-            if (string.IsNullOrEmpty(feeName)) return null;
+        //public static ObservableCollection<MMFee> AutoGetFee(string feeName, string feeType, int year )
+        //{
 
-            if (string.IsNullOrEmpty(feeType))
-                feeType = feeName;
+        //    if (string.IsNullOrEmpty(feeName)) return null;
 
-            HQDataDataContext hQDataDataContext = new HQDataDataContext();
+        //    if (string.IsNullOrEmpty(feeType))
+        //        feeType = feeName;
 
-            var query = from temp in hQDataDataContext.MMFees
-                        where temp.FeeName == feeName && temp.FeeType == feeType
-                        select temp;
+        //    HQDataDataContext hQDataDataContext = new HQDataDataContext();
 
-            var tempQuery = query.GroupBy(x => x.Year)
-                .OrderByDescending(gr => gr.Count())
-                .Select(y => y.Key);
+        //    var query = from temp in hQDataDataContext.MMFees
+        //                where temp.FeeName == feeName && temp.FeeType == feeType
+        //                select temp;
 
-            if (tempQuery.Count() == 0) return null;
+        //    var tempQuery = query.GroupBy(x => x.Year)
+        //        .OrderByDescending(gr => gr.Count())
+        //        .Select(y => y.Key);
 
-            int tempYear = tempQuery.FirstOrDefault();
+        //    if (tempQuery.Count() == 0) return null;
 
-            ObservableCollection<MMFee> mMFees = GetFee(feeName, feeType, tempYear);
+        //    int tempYear = tempQuery.FirstOrDefault();
 
-            foreach (var temp in mMFees)
-                temp.Year = year;
+        //    ObservableCollection<MMFee> mMFees = GetFee(feeName, feeType, tempYear);
 
-            return mMFees;
+        //    foreach (var temp in mMFees)
+        //        temp.Year = year;
 
-        }
+        //    return mMFees;
+
+        //}
 
         public static void UpdateSumInFee(ref ObservableCollection<MMFee> mMFees)
         {
-            if (mMFees == null) return;
+            if (mMFees == null)
+            {
+                return;
+            }
 
             string feeType = mMFees.FirstOrDefault().FeeType;
             int year = mMFees.FirstOrDefault().Year;
 
-            var departments = mMFees.Select(x => x.Department).Distinct();
+            IEnumerable<string> departments = mMFees.Select(x => x.Department).Distinct();
 
-            if (departments == null) return;
+            if (departments == null)
+            {
+                return;
+            }
 
             int sumMonth1 = 0;
             int sumMonth2 = 0;
@@ -540,9 +346,12 @@ namespace FinanceManagement.Function
 
             foreach (string department in departments)
             {
-                if (department == "合計") continue;
+                if (department == "合計")
+                {
+                    continue;
+                }
 
-                var queryItems = mMFees.Where(x => x.Department == department);
+                IEnumerable<MMFee> queryItems = mMFees.Where(x => x.Department == department);
 
                 int month1 = 0;
                 int month2 = 0;
@@ -641,26 +450,30 @@ namespace FinanceManagement.Function
 
         public static bool OverwriteFee(ObservableCollection<MMFee> workFees)
         {
-            if (workFees == null) return false;
-
             HQDataDataContext hQDataDataContext = new HQDataDataContext();
 
             string feeName = workFees.FirstOrDefault().FeeName;
             string feeType = workFees.FirstOrDefault().FeeType;
             int year = workFees.FirstOrDefault().Year;
 
-            var query = from temp in hQDataDataContext.MMFees
-                        where temp.FeeName == feeName && temp.Year == year && temp.FeeType == feeType
-                        select temp;
+            IQueryable<MMFee> query = from temp in hQDataDataContext.MMFees
+                                      where temp.FeeName == feeName && temp.Year == year && temp.FeeType == feeType
+                                      select temp;
 
             try
             {
-                foreach (var workFee in workFees)
+                foreach (MMFee workFee in workFees)
+                {
                     if (!workFee.Department.Contains("合計"))
+                    {
                         hQDataDataContext.MMFees.InsertOnSubmit(workFee);
+                    }
+                }
 
-                foreach (var workFee in query)
+                foreach (MMFee workFee in query)
+                {
                     hQDataDataContext.MMFees.DeleteOnSubmit(workFee);
+                }
 
                 hQDataDataContext.SubmitChanges();
             }
@@ -674,8 +487,92 @@ namespace FinanceManagement.Function
 
         #endregion
 
-
         #region MMFeeMaster
+
+        public static List<MMFeeMaster> GetFixedFee()
+        {
+            HQDataDataContext hQDataDataContext = new HQDataDataContext();
+
+            IQueryable<MMFeeMaster> query = hQDataDataContext.MMFeeMasters.Where(x => x.IsFixedFee == true);
+
+            return query.ToList();
+        }
+
+        public static ObservableCollection<MMFee> GetFixedFee(string feeName, string feeType, int yearNow)
+        {
+            HQDataDataContext hQDataDataContext = new HQDataDataContext();
+
+            List<MMFee> mMFees = new List<MMFee>();
+
+            if(string.IsNullOrEmpty(feeType))
+            {
+                feeType = feeName;
+            }
+
+            var result = hQDataDataContext.MMFeeMasters.Where(x => x.FeeName == feeName && x.IsFixedFee).ToList();
+
+            foreach(var temp in result)
+            {
+                int yearFrom = ((DateTime)temp.TimeFrom).Year;
+                int monthFrom = ((DateTime)temp.TimeFrom).Month;
+
+                int yearTo = ((DateTime)temp.TimeTo).Year;
+                int monthTo = ((DateTime)temp.TimeTo).Month;
+
+                MMFee mMFee = new MMFee()
+                {
+                    FeeName = temp.FeeName,
+                    Item = temp.Item,
+                    Field1 = temp.Field1,
+                    Field2 = temp.Field2,
+                    Field3 = temp.Field3,
+                    Field4 = temp.Field4,
+                    Field5 = temp.Field5,
+                    Field6 = temp.Field6,
+                    Field7 = temp.Field7,
+                    Field8 = temp.Field8,
+                    Field9 = temp.Field9,
+                    Year = yearNow,
+                    Month1 = ((yearTo * 12 + monthTo - (yearNow + 1) * 12 - 1 >= 0) && ((yearNow + 1) * 12 + 1 - yearFrom * 12 - monthFrom >= 0)) ? (int)temp.Amount : 0,
+                    Month2 = ((yearTo * 12 + monthTo - (yearNow + 1) * 12 - 2 >= 0) && ((yearNow + 1) * 12 + 2 - yearFrom * 12 - monthFrom >= 0)) ? (int)temp.Amount : 0,
+                    Month3 = ((yearTo * 12 + monthTo - (yearNow + 1) * 12 - 3 >= 0) && ((yearNow + 1) * 12 + 3 - yearFrom * 12 - monthFrom >= 0)) ? (int)temp.Amount : 0,
+                    Month4 = ((yearTo * 12 + monthTo - yearNow * 12 - 4 >= 0) && (yearNow * 12 + 4 - yearFrom * 12 - monthFrom >= 0)) ? (int)temp.Amount : 0,
+                    Month5 = ((yearTo * 12 + monthTo - yearNow * 12 - 5 >= 0) && (yearNow * 12 + 5 - yearFrom * 12 - monthFrom >= 0)) ? (int)temp.Amount : 0,
+                    Month6 = ((yearTo * 12 + monthTo - yearNow * 12 - 6 >= 0) && (yearNow * 12 + 6 - yearFrom * 12 - monthFrom >= 0)) ? (int)temp.Amount : 0,
+                    Month7 = ((yearTo * 12 + monthTo - yearNow * 12 - 7 >= 0) && (yearNow * 12 + 7 - yearFrom * 12 - monthFrom >= 0)) ? (int)temp.Amount : 0,
+                    Month8 = ((yearTo * 12 + monthTo - yearNow * 12 - 8 >= 0) && (yearNow * 12 + 8 - yearFrom * 12 - monthFrom >= 0)) ? (int)temp.Amount : 0,
+                    Month9 = ((yearTo * 12 + monthTo - yearNow * 12 - 9 >= 0) && (yearNow * 12 + 9 - yearFrom * 12 - monthFrom >= 0)) ? (int)temp.Amount : 0,
+                    Month10 = ((yearTo * 12 + monthTo - yearNow * 12 - 10 >= 0) && (yearNow * 12 + 10 - yearFrom * 12 - monthFrom >= 0)) ? (int)temp.Amount : 0,
+                    Month11 = ((yearTo * 12 + monthTo - yearNow * 12 - 11 >= 0) && (yearNow * 12 + 11 - yearFrom * 12 - monthFrom >= 0)) ? (int)temp.Amount : 0,
+                    Month12 = ((yearTo * 12 + monthTo - yearNow * 12 - 12 >= 0) && (yearNow * 12 + 12 - yearFrom * 12 - monthFrom >= 0)) ? (int)temp.Amount : 0,
+                };
+
+                mMFee.Sum = mMFee.Month1 + mMFee.Month2 + mMFee.Month3 + mMFee.Month4 + mMFee.Month5 + mMFee.Month6 + mMFee.Month7 + mMFee.Month8 + mMFee.Month9 + mMFee.Month10 + mMFee.Month11 + mMFee.Month12;
+
+                if (temp.HQWork)
+                {
+                    mMFee.Department = "工事";
+                    mMFees.Add(mMFee);
+                }
+                if (temp.HQ)
+                {
+                    mMFee.Department = "本社";
+                    mMFees.Add(mMFee);
+                }
+                if (temp.SDC)
+                {
+                    mMFee.Department = "SDC";
+                    mMFees.Add(mMFee);
+                }
+                if (temp.Ota)
+                {
+                    mMFee.Department = "太田";
+                    mMFees.Add(mMFee);
+                }
+            }
+
+            return result.Count == 0 ? null : AddSumToMMFee(feeName, feeType, yearNow, mMFees);
+        }
 
         public static void RefMMFeeByFeeMaster(ref MMFee mMFee)
         {
@@ -690,11 +587,11 @@ namespace FinanceManagement.Function
 
             HQDataDataContext hQDataDataContext = new HQDataDataContext();
 
-            var query = hQDataDataContext.MMFeeMasters.Where(x => x.FeeName == feeName && x.Item == item);
+            IQueryable<MMFeeMaster> query = hQDataDataContext.MMFeeMasters.Where(x => x.FeeName == feeName && x.Item == item);
 
-            if(query.Count() == 0)
+            if (query.Count() == 0)
             {
-                InsertFeeMaster(new MMFeeMaster()
+                MMFeeMaster mNewFeeMaster = new MMFeeMaster()
                 {
                     FeeName = mMFee.FeeName,
                     Item = mMFee.Item,
@@ -707,15 +604,33 @@ namespace FinanceManagement.Function
                     Field7 = mMFee.Field7,
                     Field8 = mMFee.Field8,
                     Field9 = mMFee.Field9,
-                    HQWork = true,
-                    HQ = true,
-                    Ota = true,
-                    SDC = true,
+                    HQWork = false,
+                    HQ = false,
+                    Ota = false,
+                    SDC = false,
                     IsFixedFee = false,
-                    TimeFrom = new DateTime(1900,1,1),
-                    TimeTo = new DateTime(1900,1,1),
+                    TimeFrom = new DateTime(1900, 1, 1),
+                    TimeTo = new DateTime(1900, 1, 1),
                     Amount = 0
-                });
+                };
+
+                if (mMFee.Department == "本社")
+                {
+                    mNewFeeMaster.HQ = true;
+                }
+                else if(mMFee.Department == "工事")
+                {
+                    mNewFeeMaster.HQWork = true;
+                }
+                else if(mMFee.Department == "SDC")
+                {
+                    mNewFeeMaster.SDC = true;
+                }
+                else if(mMFee.Department == "太田")
+                {
+                    mNewFeeMaster.Ota = true;
+                }
+                _ = InsertFeeMaster(mNewFeeMaster);
 
                 return;
             }
@@ -759,6 +674,7 @@ namespace FinanceManagement.Function
                 mMFee.Month10 = month10 <= mMFeeMaster.TimeTo && month10 >= mMFeeMaster.TimeFrom ? (int)mMFeeMaster.Amount : 0;
                 mMFee.Month11 = month11 <= mMFeeMaster.TimeTo && month11 >= mMFeeMaster.TimeFrom ? (int)mMFeeMaster.Amount : 0;
                 mMFee.Month12 = month12 <= mMFeeMaster.TimeTo && month12 >= mMFeeMaster.TimeFrom ? (int)mMFeeMaster.Amount : 0;
+                mMFee.Sum = mMFee.Month1 + mMFee.Month2 + mMFee.Month3 + mMFee.Month4 + mMFee.Month5 + mMFee.Month6 + mMFee.Month7 + mMFee.Month8 + mMFee.Month9 + mMFee.Month10 + mMFee.Month11 + mMFee.Month12;
             }
         }
 
@@ -796,50 +712,24 @@ namespace FinanceManagement.Function
             }
         }
 
-        public static bool UpdateFeeMasterFixedPart(MMFeeMaster mMFeeMaster)
-        {
-            try
-            {
-                if (mMFeeMaster == null)
-                {
-                    return false;
-                }
-
-                using (var context = new HQDataDataContext())
-                {
-                    var update = context.MMFeeMasters.Single(x => x.ID == mMFeeMaster.ID);
-                    update.IsFixedFee = mMFeeMaster.IsFixedFee;
-                    update.TimeFrom = mMFeeMaster.TimeFrom;
-                    update.TimeTo = mMFeeMaster.TimeTo;
-                    update.Amount = mMFeeMaster.Amount;
-                    context.SubmitChanges();
-                }
-
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
         public static bool OverwriteFeeMaster(ObservableCollection<MMFeeMaster> mMFeeMasters, string feeName)
         {
             try
             {
                 HQDataDataContext hQDataDataContext = new HQDataDataContext();
 
-                var deleteValues = hQDataDataContext.MMFeeMasters.Where(x => x.FeeName == feeName);
+                IQueryable<MMFeeMaster> deleteValues = hQDataDataContext.MMFeeMasters.Where(x => x.FeeName == feeName);
 
-                foreach (var temp in deleteValues)
+                foreach (MMFeeMaster temp in deleteValues)
                 {
                     hQDataDataContext.MMFeeMasters.DeleteOnSubmit(temp);
                 }
 
                 hQDataDataContext.SubmitChanges();
 
-                foreach (var temp in mMFeeMasters)
+                foreach (MMFeeMaster temp in mMFeeMasters)
                 {
+                    temp.FeeName = feeName;
                     hQDataDataContext.MMFeeMasters.InsertOnSubmit(temp);
                 }
 
@@ -851,7 +741,6 @@ namespace FinanceManagement.Function
             {
                 return false;
             }
-
         }
 
         #endregion
@@ -864,18 +753,6 @@ namespace FinanceManagement.Function
             HQDataDataContext hQDataDataContext = new HQDataDataContext();
             return hQDataDataContext.MMFeeStructs.Where(x =>x.FeeName == feeName).FirstOrDefault();
         }
-
-        //public static bool IsFeeTypeDelectable(MMFeeStruct mMFeeStruct)
-        //{
-        //    //HQDataDataContext hQDataDataContext = new HQDataDataContext();
-        //    //var query = (from temp in hQDataDataContext.MMFees
-        //    //            where temp.FeeName == mMFeeStruct.FeeName && temp.FeeType == mMFeeStruct.FeeType
-        //    //            select temp).Count();
-
-        //    //if (query == 0)
-        //    //    return true;
-        //    //return false;
-        //}
 
         public static bool IsFeeNameDelectable(MMFeeStruct mMFeeStruct)
         {
@@ -890,7 +767,6 @@ namespace FinanceManagement.Function
 
         }
 
-
         public static bool IsFeeTypeDelectable(MMFeeTypeStruct mMFeeTypeStruct)
         {
             HQDataDataContext hQDataDataContext = new HQDataDataContext();
@@ -904,51 +780,6 @@ namespace FinanceManagement.Function
             if (feeCount == 0) return true;
 
             return false;
-        }
-
-        public static MMFeeStruct GetField(string company, string feeName)
-        {
-            HQDataDataContext hQDataDataContext = new HQDataDataContext();
-
-            var query = (from temp in hQDataDataContext.MMFeeStructs
-                         where temp.Company == company && temp.FeeName == feeName
-                         select temp).FirstOrDefault();
-
-            if (query == null) return null;
-
-            return query;
-
-        }
-
-        //public static ObservableCollection<MMFeeStruct> GetFeeType(string company, string feeName)
-        //{
-        //    HQDataDataContext hQDataDataContext = new HQDataDataContext();
-
-        //    var query = (from temp in hQDataDataContext.MMFeeStructs
-        //                where temp.Company == company && temp.FeeName == feeName
-        //                select temp.FeeType).Distinct();
-
-        //    if (query == null) return null;
-
-        //    ObservableCollection<MMFeeStruct> mMFeeStructs = new ObservableCollection<MMFeeStruct>();
-
-        //    foreach(var temp in query)
-        //    {
-        //        mMFeeStructs.Add((from feeStruct in hQDataDataContext.MMFeeStructs where feeStruct.FeeType == temp select feeStruct).FirstOrDefault());
-        //    }
-
-        //    if (mMFeeStructs.Count() == 0)
-        //        return null;
-        //    return mMFeeStructs;
-        //}
-
-        public static List<string> GetFeeNameMaster()
-        {
-
-            HQDataDataContext hQDataDataContext = new HQDataDataContext();
-
-            return hQDataDataContext.MMFeeStructs.Select(x => x.FeeName).ToList();
-
         }
 
         public static ObservableCollection<MMFeeStruct> GetFeeName(string company)
@@ -1094,7 +925,6 @@ namespace FinanceManagement.Function
             }
         }
 
-
         public static bool OverWriteFeeTypeStruct(string feeName, ObservableCollection<MMFeeTypeStruct> mMFeeTypeStructs)
         {
             try
@@ -1133,7 +963,6 @@ namespace FinanceManagement.Function
             }
         }
 
-
         static private bool deleteFeeTypeStruct(int feeId)
         {
             try
@@ -1164,18 +993,6 @@ namespace FinanceManagement.Function
             var count = mMFeeStructs.Where(x => x.Id == Id).Count();
             if (count == 0) return false;
             return true;
-        }
-
-        public static bool IsFeeNameUsed(string feeName)
-        {
-            HQDataDataContext hQDataDataContext = new HQDataDataContext();
-
-            int count = hQDataDataContext.MMFees
-                .Where(x => x.FeeName == feeName)
-                .Count();
-
-            if (count > 0) return true;
-            return false;
         }
 
         #endregion
@@ -1815,38 +1632,5 @@ namespace FinanceManagement.Function
 
         #endregion
 
-
-        #region UpdateSumAllDatabase
-
-        public static void UpdateSumAllDatabase()
-        {
-            HQDataDataContext hQDataDataContext = new HQDataDataContext();
-
-            foreach(var item in hQDataDataContext.MMFees)
-            {
-                item.Sum = item.Month1 + item.Month2 + item.Month3 + item.Month4 + item.Month5 + item.Month6 + item.Month7 + item.Month8 + item.Month9 + item.Month10 + item.Month11 + item.Month12;
-            }
-
-            hQDataDataContext.SubmitChanges();
-        }
-
-        public static void ChangeYear()
-        {
-            HQDataDataContext hQDataDataContext = new HQDataDataContext();
-
-            foreach(var item in hQDataDataContext.MMFees)
-            {
-                item.Year -= 4;
-            }
-
-            foreach(var item in hQDataDataContext.MMSales)
-            {
-                item.Year -= 4;
-            }
-
-            hQDataDataContext.SubmitChanges();
-        }
-
-        #endregion
     }
 }

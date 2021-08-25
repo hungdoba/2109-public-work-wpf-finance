@@ -69,6 +69,17 @@
 
                     <Label Name="lbWindowName" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontWeight="Bold"/>
 
+                    <TextBlock Grid.Row="6" Grid.RowSpan="6" Grid.Column="0" Margin="10,0,0,0" TextWrapping="Wrap" FontSize="20" xml:space="preserve" LineHeight="35" Text="　順番を変更したい時は「ドラッグドロップ可能」ボタンをクリックして変更したい項目をドラッグとドロップして入れ替えてください。&#x0a; &#x0a; 　変更を保存する時は「保存」ボタンをクリックしてください。&#x0a; &#x0a; 　変更を完了する時もう一度「ドラッグドロップ可能」ボタンをクリックして完了してください。"/>
+
+
+                    <ToggleButton x:Name="btnAllowDrag" Grid.Row="14" Grid.Column="1" Margin="5" Content="ドラッグドロップ可能" Background="CornflowerBlue" Foreground="White" BorderBrush="DarkBlue" FontSize="24" IsChecked="False" >
+                        <ToggleButton.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </ToggleButton.Resources>
+                    </ToggleButton>
+
                     <Button x:Name="btnSave" Grid.Row="15" Grid.Column="1" Margin="5" Content="保存" Click="btnSave_Click" Background="CornflowerBlue" Foreground="White" BorderBrush="DarkBlue" FontSize="24" IsEnabled="False">
                         <Button.Resources>
                             <Style TargetType="Border">
@@ -145,7 +156,7 @@
                             </DataGridCheckBoxColumn.CellStyle>
                         </DataGridCheckBoxColumn>
 
-                        <DataGridCheckBoxColumn Header="固定費" Width="1*" Binding="{Binding Path=IsFixedFee, UpdateSourceTrigger=PropertyChanged}" ElementStyle="{StaticResource checkBoxSize}">
+                        <DataGridCheckBoxColumn x:Name="colFixedFee" Header="固定費" Width="1*" Binding="{Binding Path=IsFixedFee, UpdateSourceTrigger=PropertyChanged}" ElementStyle="{StaticResource checkBoxSize}">
                             <DataGridCheckBoxColumn.CellStyle>
                                 <Style>
                                     <EventSetter Event="CheckBox.Click" Handler="CheckBox_Checked"/>

@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
-using System.Collections.ObjectModel;
-using FinanceManagement.Function;
 using System.Windows.Controls;
+using FinanceManagement.Function;
+using System.Collections.ObjectModel;
 using System.Windows.Controls.Primitives;
-using System.Collections.Generic;
 
 namespace FinanceManagement.WindowReport
 {
@@ -37,7 +37,7 @@ namespace FinanceManagement.WindowReport
         private void getItemMaster(string feeName)
         {
             itemFeeMasters = DatabaseHandler.GetFeeMaster(feeName);
-            cbCustomer.ItemsSource = itemFeeMasters;
+            cbCustomer.ItemsSource = itemFeeMasters.Where(x => x.HQWork);
         }
 
         private void getData(int year)
@@ -287,8 +287,24 @@ namespace FinanceManagement.WindowReport
             btnSDC.IsChecked = false;
 
             ToggleButton toggleButton = (ToggleButton)sender;
-
             toggleButton.IsChecked = true;
+
+            if(toggleButton.Content.ToString() == "工事")
+            {
+                cbCustomer.ItemsSource = itemFeeMasters.Where(x => x.HQWork);
+            }
+            else if(toggleButton.Content.ToString() == "本社")
+            {
+                cbCustomer.ItemsSource = itemFeeMasters.Where(x => x.HQ);
+            }
+            else if(toggleButton.Content.ToString() == "SDC")
+            {
+                cbCustomer.ItemsSource = itemFeeMasters.Where(x => x.SDC);
+            }
+            else if(toggleButton.Content.ToString() == "太田")
+            {
+                cbCustomer.ItemsSource = itemFeeMasters.Where(x => x.Ota);
+            }
         }
 
         private void btnDeleteRow_Click(object sender, RoutedEventArgs e)

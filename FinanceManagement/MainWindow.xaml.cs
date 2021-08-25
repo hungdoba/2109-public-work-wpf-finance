@@ -92,9 +92,6 @@ namespace FinanceManagement
 
         private void btnSetupMaster_Click(object sender, RoutedEventArgs e)
         {
-            //WindowMaster.WindowMaster windowMaster = new WindowMaster.WindowMaster();
-            //_ = windowMaster.ShowDialog();
-
             MMFeeStruct mMFeeStruct = new MMFeeStruct()
             {
                 FeeName = "売上"
@@ -130,6 +127,21 @@ namespace FinanceManagement
         {
             WindowPassword windowPassword = new WindowPassword() { IsLogIn = false };
             _ = windowPassword.ShowDialog();
+        }
+
+        private void btnSetupEmployeeMaster_Click(object sender, RoutedEventArgs e)
+        {
+            MMFeeStruct mMFeeStruct = new MMFeeStruct()
+            {
+                FeeName = "会社員"
+            };
+
+            WindowFeeMaster WindowFeeMaster = new WindowFeeMaster()
+            {
+                MMFeeStruct = mMFeeStruct
+            };
+
+            _ = WindowFeeMaster.ShowDialog();
         }
     }
 }

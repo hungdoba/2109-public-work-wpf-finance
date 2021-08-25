@@ -38,6 +38,14 @@ namespace FinanceManagement.WindowMaster
 
         private void setGridFeeHeader()
         {
+
+            if (!string.IsNullOrEmpty(MMFeeStruct.FeeName))
+            {
+                if(MMFeeStruct.FeeName == "会社員" || MMFeeStruct.FeeName == "売上" || MMFeeStruct.FeeName == "仕入")
+                {
+                    colFixedFee.Visibility = Visibility.Hidden;
+                }
+            }
             MMFeeStruct mMFieldName = DatabaseHandler.GetFieldName(MMFeeStruct.FeeName);
 
             if(mMFieldName == null)
@@ -85,6 +93,8 @@ namespace FinanceManagement.WindowMaster
             mMFeeMasters = DatabaseHandler.GetFeeMaster(feeName);
 
             gridFee.ItemsSource = mMFeeMasters;
+
+            gridFee.SelectedIndex = 0;
         }
 
 
@@ -126,7 +136,7 @@ namespace FinanceManagement.WindowMaster
 
             string duplicateValues = string.Join("、", temp.ToList());
 
-            MessageBox.Show($"「{duplicateValues}」を２つあります。", "エラー");
+            _ = MessageBox.Show($"「{duplicateValues}」を２つあります。", "エラー");
 
             return true;
 
@@ -176,8 +186,9 @@ namespace FinanceManagement.WindowMaster
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
+            isDragging = false;
+
             btnSave.IsEnabled = true;
-            //e.Handled = true;
 
             if (gridFee.SelectedItem is MMFeeMaster @feeMaster)
             {
@@ -191,7 +202,7 @@ namespace FinanceManagement.WindowMaster
                 {
                     MMFeeMaster = feeMaster
                 };
-                windowFixedFee.ShowDialog();
+                _ = windowFixedFee.ShowDialog();
 
                 if (windowFixedFee.DialogResult == true)
                 {
@@ -209,13 +220,23 @@ namespace FinanceManagement.WindowMaster
 
         private void CheckBox_Modify(object sender, RoutedEventArgs e)
         {
+            isDragging = false;
             btnSave.IsEnabled = true;
         }
 
-        private void gridFee_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void gridFee_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            var row = UIHelpers.TryFindFromPoint<DataGridRow>((UIElement)sender, e.GetPosition(gridFee));
-            if (row == null) return;
+            if(btnAllowDrag.IsChecked == false)
+            {
+                return;
+            }
+
+            DataGridRow row = UIHelpers.TryFindFromPoint<DataGridRow>((UIElement)sender, e.GetPosition(gridFee));
+            if (row == null)
+            {
+                return;
+            }
+
             if (row.Item is MMFeeMaster mMFeeMaster)
             {
                 isDragging = true;
@@ -223,10 +244,14 @@ namespace FinanceManagement.WindowMaster
             }
         }
 
-        private void gridFee_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        private void gridFee_MouseMove(object sender, MouseEventArgs e)
         {
-            if (!isDragging || e.LeftButton != MouseButtonState.Pressed) return;
-            if(!popupDragDrop.IsOpen)
+            if (!isDragging || e.LeftButton != MouseButtonState.Pressed)
+            {
+                return;
+            }
+
+            if (!popupDragDrop.IsOpen)
             {
                 gridFee.IsReadOnly = true;
                 popupDragDrop.IsOpen = true;
@@ -236,9 +261,15 @@ namespace FinanceManagement.WindowMaster
             popupDragDrop.PlacementRectangle = new Rect(e.GetPosition(this), popupSize);
 
             Point position = e.GetPosition(gridFee);
-            var row = UIHelpers.TryFindFromPoint<DataGridRow>(gridFee, position);
-            if (row != null) gridFee.SelectedItem = row.Item;
-            else reSetDragDrop();
+            DataGridRow row = UIHelpers.TryFindFromPoint<DataGridRow>(gridFee, position);
+            if (row != null)
+            {
+                gridFee.SelectedItem = row.Item;
+            }
+            else
+            {
+                reSetDragDrop();
+            }
         }
 
         private void reSetDragDrop()
@@ -259,7 +290,7 @@ namespace FinanceManagement.WindowMaster
 
             if (mMFeeMasters.Contains(draggedItem))
             {
-                mMFeeMasters.Remove(draggedItem);
+                _ = mMFeeMasters.Remove(draggedItem);
             }
 
             mMFeeMasters.Insert(indexTarget, draggedItem);

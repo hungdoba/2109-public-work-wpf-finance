@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{BE503C6B-04BE-4892-B0E8-684C7FE82612}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>FinanceManagement</RootNamespace>
     <AssemblyName>FinanceManagement</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -29,7 +29,7 @@
     <ProductName>月次管理システム</ProductName>
     <PublisherName>月次管理システム</PublisherName>
     <SuiteName>月次管理システム</SuiteName>
-    <ApplicationRevision>8</ApplicationRevision>
+    <ApplicationRevision>14</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -74,10 +74,10 @@
     <ApplicationIcon>Logo.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>F29491FD9E821F2DC2F1F612F5A31B81FF534131</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>EF21F69651B3E4A84F6AAC1D2A4A7CCF807B512C</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>FinanceManagement_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>SeikyoApplicationKeyHung.pfx</ManifestKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ExcelDataReader, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
@@ -116,8 +116,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Class\DataContent.cs" />
-    <Compile Include="Class\HQIncomeReport.cs" />
     <Compile Include="Function\DatabaseHandler.cs" />
     <Compile Include="Function\ExcelHandler.cs" />
     <Compile Include="Function\UIHelpers.cs" />
@@ -132,9 +130,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HQData.dbml</DependentUpon>
     </Compile>
-    <Compile Include="UserControl\DatagridSetupMaster.xaml.cs">
-      <DependentUpon>DatagridSetupMaster.xaml</DependentUpon>
-    </Compile>
     <Compile Include="WindowImport\WindowImportSale.xaml.cs">
       <DependentUpon>WindowImportSale.xaml</DependentUpon>
     </Compile>
@@ -143,6 +138,9 @@
     </Compile>
     <Compile Include="WindowMaster\WindowFixedFee.xaml.cs">
       <DependentUpon>WindowFixedFee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowMaster\WindowMasterAll.xaml.cs">
+      <DependentUpon>WindowMasterAll.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowMaster\WindowPassword.xaml.cs">
       <DependentUpon>WindowPassword.xaml</DependentUpon>
@@ -155,12 +153,6 @@
     </Compile>
     <Compile Include="WindowMaster\WindowSetup.xaml.cs">
       <DependentUpon>WindowSetup.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="WindowMaster\WindowCustomerMaster.xaml.cs">
-      <DependentUpon>WindowCustomerMaster.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="WindowMaster\WindowMaster.xaml.cs">
-      <DependentUpon>WindowMaster.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowReport\WindowFee.xaml.cs">
       <DependentUpon>WindowFee.xaml</DependentUpon>
@@ -185,10 +177,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UserControl\DatagridSetupMaster.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="WindowImport\WindowImportSale.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -198,6 +186,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="WindowMaster\WindowFixedFee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowMaster\WindowMasterAll.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -216,14 +208,6 @@
     <Page Include="WindowMaster\WindowSetup.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="WindowMaster\WindowCustomerMaster.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="WindowMaster\WindowMaster.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowReport\WindowFee.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -262,6 +246,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="SeikyoApplicationKeyHung.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

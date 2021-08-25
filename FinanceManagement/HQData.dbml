@@ -21,15 +21,6 @@
       <Column Name="Remark" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.MMCustomerMaster" Member="MMCustomerMasters">
-    <Type Name="MMCustomerMaster">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="ShortName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="IsUse" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="Remark" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.MMFee" Member="MMFees">
     <Type Name="MMFee">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -125,37 +116,6 @@
       <Column Name="Remark" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.MMFeeTypeStruct" Member="MMFeeTypeStructs">
-    <Type Name="MMFeeTypeStruct">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="FeeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="FeeType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Remark" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.MMFixedFee" Member="MMFixedFees">
-    <Type Name="MMFixedFee">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="FeeName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Department" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="FeeType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Item" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Field1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Field2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Field3" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Field4" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Field5" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Field6" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Field7" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Field8" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Field9" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="TimeFrom" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="TimeTo" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="Amount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Remark" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="IsUse" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.MMFeeMaster" Member="MMFeeMasters">
     <Type Name="MMFeeMaster">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -178,6 +138,14 @@
       <Column Name="TimeFrom" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="TimeTo" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="Amount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MMFeeTypeStruct" Member="MMFeeTypeStructs">
+    <Type Name="MMFeeTypeStruct">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FeeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FeeType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Remark" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

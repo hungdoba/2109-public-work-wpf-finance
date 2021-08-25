@@ -49,14 +49,7 @@ C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\F
 C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\FinanceManagement.csproj.CopyComplete
 C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\FinanceManagement.exe
 C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\FinanceManagement.pdb
-C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\UserControl\DatagridSetupMaster.baml
-C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\UserControl\DatagridSetupMaster.g.cs
-C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowMaster\WindowCustomerMaster.g.cs
-C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\FinanceManagement_MarkupCompile.lref
-C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowMaster\WindowCustomerMaster.baml
-C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowMaster\WindowMaster.baml
-C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowMaster\WindowMaster.g.cs
 C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowReport\WindowFee.baml
 C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowReport\WindowFee.g.cs
 C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowReport\WindowSale.baml
@@ -79,3 +72,5 @@ C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\W
 C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowMaster\WindowFeeMaster.g.cs
 C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowMaster\WindowFixedFee.baml
 C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowMaster\WindowFixedFee.g.cs
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowMaster\WindowMasterAll.baml
+C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\WindowMaster\WindowMasterAll.g.cs

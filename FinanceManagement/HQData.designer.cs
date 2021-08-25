@@ -33,9 +33,6 @@ namespace FinanceManagement
     partial void InsertQuotationSynthetic(QuotationSynthetic instance);
     partial void UpdateQuotationSynthetic(QuotationSynthetic instance);
     partial void DeleteQuotationSynthetic(QuotationSynthetic instance);
-    partial void InsertMMCustomerMaster(MMCustomerMaster instance);
-    partial void UpdateMMCustomerMaster(MMCustomerMaster instance);
-    partial void DeleteMMCustomerMaster(MMCustomerMaster instance);
     partial void InsertMMFee(MMFee instance);
     partial void UpdateMMFee(MMFee instance);
     partial void DeleteMMFee(MMFee instance);
@@ -48,15 +45,12 @@ namespace FinanceManagement
     partial void InsertMMFeeStruct(MMFeeStruct instance);
     partial void UpdateMMFeeStruct(MMFeeStruct instance);
     partial void DeleteMMFeeStruct(MMFeeStruct instance);
-    partial void InsertMMFeeTypeStruct(MMFeeTypeStruct instance);
-    partial void UpdateMMFeeTypeStruct(MMFeeTypeStruct instance);
-    partial void DeleteMMFeeTypeStruct(MMFeeTypeStruct instance);
-    partial void InsertMMFixedFee(MMFixedFee instance);
-    partial void UpdateMMFixedFee(MMFixedFee instance);
-    partial void DeleteMMFixedFee(MMFixedFee instance);
     partial void InsertMMFeeMaster(MMFeeMaster instance);
     partial void UpdateMMFeeMaster(MMFeeMaster instance);
     partial void DeleteMMFeeMaster(MMFeeMaster instance);
+    partial void InsertMMFeeTypeStruct(MMFeeTypeStruct instance);
+    partial void UpdateMMFeeTypeStruct(MMFeeTypeStruct instance);
+    partial void DeleteMMFeeTypeStruct(MMFeeTypeStruct instance);
     #endregion
 		
 		public HQDataDataContext() : 
@@ -97,14 +91,6 @@ namespace FinanceManagement
 			}
 		}
 		
-		public System.Data.Linq.Table<MMCustomerMaster> MMCustomerMasters
-		{
-			get
-			{
-				return this.GetTable<MMCustomerMaster>();
-			}
-		}
-		
 		public System.Data.Linq.Table<MMFee> MMFees
 		{
 			get
@@ -137,27 +123,19 @@ namespace FinanceManagement
 			}
 		}
 		
-		public System.Data.Linq.Table<MMFeeTypeStruct> MMFeeTypeStructs
-		{
-			get
-			{
-				return this.GetTable<MMFeeTypeStruct>();
-			}
-		}
-		
-		public System.Data.Linq.Table<MMFixedFee> MMFixedFees
-		{
-			get
-			{
-				return this.GetTable<MMFixedFee>();
-			}
-		}
-		
 		public System.Data.Linq.Table<MMFeeMaster> MMFeeMasters
 		{
 			get
 			{
 				return this.GetTable<MMFeeMaster>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MMFeeTypeStruct> MMFeeTypeStructs
+		{
+			get
+			{
+				return this.GetTable<MMFeeTypeStruct>();
 			}
 		}
 	}
@@ -563,164 +541,6 @@ namespace FinanceManagement
 					this._WorkType = value;
 					this.SendPropertyChanged("WorkType");
 					this.OnWorkTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remark", DbType="NVarChar(50)")]
-		public string Remark
-		{
-			get
-			{
-				return this._Remark;
-			}
-			set
-			{
-				if ((this._Remark != value))
-				{
-					this.OnRemarkChanging(value);
-					this.SendPropertyChanging();
-					this._Remark = value;
-					this.SendPropertyChanged("Remark");
-					this.OnRemarkChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MMCustomerMaster")]
-	public partial class MMCustomerMaster : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private string _Name;
-		
-		private string _ShortName;
-		
-		private bool _IsUse;
-		
-		private string _Remark;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnShortNameChanging(string value);
-    partial void OnShortNameChanged();
-    partial void OnIsUseChanging(bool value);
-    partial void OnIsUseChanged();
-    partial void OnRemarkChanging(string value);
-    partial void OnRemarkChanged();
-    #endregion
-		
-		public MMCustomerMaster()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShortName", DbType="NVarChar(50)")]
-		public string ShortName
-		{
-			get
-			{
-				return this._ShortName;
-			}
-			set
-			{
-				if ((this._ShortName != value))
-				{
-					this.OnShortNameChanging(value);
-					this.SendPropertyChanging();
-					this._ShortName = value;
-					this.SendPropertyChanged("ShortName");
-					this.OnShortNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsUse", DbType="Bit NOT NULL")]
-		public bool IsUse
-		{
-			get
-			{
-				return this._IsUse;
-			}
-			set
-			{
-				if ((this._IsUse != value))
-				{
-					this.OnIsUseChanging(value);
-					this.SendPropertyChanging();
-					this._IsUse = value;
-					this.SendPropertyChanged("IsUse");
-					this.OnIsUseChanged();
 				}
 			}
 		}
@@ -2814,634 +2634,6 @@ namespace FinanceManagement
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MMFeeTypeStruct")]
-	public partial class MMFeeTypeStruct : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _FeeId;
-		
-		private string _FeeType;
-		
-		private string _Remark;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnFeeIdChanging(int value);
-    partial void OnFeeIdChanged();
-    partial void OnFeeTypeChanging(string value);
-    partial void OnFeeTypeChanged();
-    partial void OnRemarkChanging(string value);
-    partial void OnRemarkChanged();
-    #endregion
-		
-		public MMFeeTypeStruct()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FeeId", DbType="Int NOT NULL")]
-		public int FeeId
-		{
-			get
-			{
-				return this._FeeId;
-			}
-			set
-			{
-				if ((this._FeeId != value))
-				{
-					this.OnFeeIdChanging(value);
-					this.SendPropertyChanging();
-					this._FeeId = value;
-					this.SendPropertyChanged("FeeId");
-					this.OnFeeIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FeeType", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string FeeType
-		{
-			get
-			{
-				return this._FeeType;
-			}
-			set
-			{
-				if ((this._FeeType != value))
-				{
-					this.OnFeeTypeChanging(value);
-					this.SendPropertyChanging();
-					this._FeeType = value;
-					this.SendPropertyChanged("FeeType");
-					this.OnFeeTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remark", DbType="NVarChar(50)")]
-		public string Remark
-		{
-			get
-			{
-				return this._Remark;
-			}
-			set
-			{
-				if ((this._Remark != value))
-				{
-					this.OnRemarkChanging(value);
-					this.SendPropertyChanging();
-					this._Remark = value;
-					this.SendPropertyChanged("Remark");
-					this.OnRemarkChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MMFixedFee")]
-	public partial class MMFixedFee : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private string _FeeName;
-		
-		private string _Department;
-		
-		private string _FeeType;
-		
-		private string _Item;
-		
-		private string _Field1;
-		
-		private string _Field2;
-		
-		private string _Field3;
-		
-		private string _Field4;
-		
-		private string _Field5;
-		
-		private string _Field6;
-		
-		private string _Field7;
-		
-		private string _Field8;
-		
-		private string _Field9;
-		
-		private System.DateTime _TimeFrom;
-		
-		private System.DateTime _TimeTo;
-		
-		private int _Amount;
-		
-		private string _Remark;
-		
-		private bool _IsUse;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnFeeNameChanging(string value);
-    partial void OnFeeNameChanged();
-    partial void OnDepartmentChanging(string value);
-    partial void OnDepartmentChanged();
-    partial void OnFeeTypeChanging(string value);
-    partial void OnFeeTypeChanged();
-    partial void OnItemChanging(string value);
-    partial void OnItemChanged();
-    partial void OnField1Changing(string value);
-    partial void OnField1Changed();
-    partial void OnField2Changing(string value);
-    partial void OnField2Changed();
-    partial void OnField3Changing(string value);
-    partial void OnField3Changed();
-    partial void OnField4Changing(string value);
-    partial void OnField4Changed();
-    partial void OnField5Changing(string value);
-    partial void OnField5Changed();
-    partial void OnField6Changing(string value);
-    partial void OnField6Changed();
-    partial void OnField7Changing(string value);
-    partial void OnField7Changed();
-    partial void OnField8Changing(string value);
-    partial void OnField8Changed();
-    partial void OnField9Changing(string value);
-    partial void OnField9Changed();
-    partial void OnTimeFromChanging(System.DateTime value);
-    partial void OnTimeFromChanged();
-    partial void OnTimeToChanging(System.DateTime value);
-    partial void OnTimeToChanged();
-    partial void OnAmountChanging(int value);
-    partial void OnAmountChanged();
-    partial void OnRemarkChanging(string value);
-    partial void OnRemarkChanged();
-    partial void OnIsUseChanging(bool value);
-    partial void OnIsUseChanged();
-    #endregion
-		
-		public MMFixedFee()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FeeName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string FeeName
-		{
-			get
-			{
-				return this._FeeName;
-			}
-			set
-			{
-				if ((this._FeeName != value))
-				{
-					this.OnFeeNameChanging(value);
-					this.SendPropertyChanging();
-					this._FeeName = value;
-					this.SendPropertyChanged("FeeName");
-					this.OnFeeNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Department", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Department
-		{
-			get
-			{
-				return this._Department;
-			}
-			set
-			{
-				if ((this._Department != value))
-				{
-					this.OnDepartmentChanging(value);
-					this.SendPropertyChanging();
-					this._Department = value;
-					this.SendPropertyChanged("Department");
-					this.OnDepartmentChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FeeType", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string FeeType
-		{
-			get
-			{
-				return this._FeeType;
-			}
-			set
-			{
-				if ((this._FeeType != value))
-				{
-					this.OnFeeTypeChanging(value);
-					this.SendPropertyChanging();
-					this._FeeType = value;
-					this.SendPropertyChanged("FeeType");
-					this.OnFeeTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Item", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Item
-		{
-			get
-			{
-				return this._Item;
-			}
-			set
-			{
-				if ((this._Item != value))
-				{
-					this.OnItemChanging(value);
-					this.SendPropertyChanging();
-					this._Item = value;
-					this.SendPropertyChanged("Item");
-					this.OnItemChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Field1", DbType="NVarChar(50)")]
-		public string Field1
-		{
-			get
-			{
-				return this._Field1;
-			}
-			set
-			{
-				if ((this._Field1 != value))
-				{
-					this.OnField1Changing(value);
-					this.SendPropertyChanging();
-					this._Field1 = value;
-					this.SendPropertyChanged("Field1");
-					this.OnField1Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Field2", DbType="NVarChar(50)")]
-		public string Field2
-		{
-			get
-			{
-				return this._Field2;
-			}
-			set
-			{
-				if ((this._Field2 != value))
-				{
-					this.OnField2Changing(value);
-					this.SendPropertyChanging();
-					this._Field2 = value;
-					this.SendPropertyChanged("Field2");
-					this.OnField2Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Field3", DbType="NVarChar(50)")]
-		public string Field3
-		{
-			get
-			{
-				return this._Field3;
-			}
-			set
-			{
-				if ((this._Field3 != value))
-				{
-					this.OnField3Changing(value);
-					this.SendPropertyChanging();
-					this._Field3 = value;
-					this.SendPropertyChanged("Field3");
-					this.OnField3Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Field4", DbType="NVarChar(50)")]
-		public string Field4
-		{
-			get
-			{
-				return this._Field4;
-			}
-			set
-			{
-				if ((this._Field4 != value))
-				{
-					this.OnField4Changing(value);
-					this.SendPropertyChanging();
-					this._Field4 = value;
-					this.SendPropertyChanged("Field4");
-					this.OnField4Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Field5", DbType="NVarChar(50)")]
-		public string Field5
-		{
-			get
-			{
-				return this._Field5;
-			}
-			set
-			{
-				if ((this._Field5 != value))
-				{
-					this.OnField5Changing(value);
-					this.SendPropertyChanging();
-					this._Field5 = value;
-					this.SendPropertyChanged("Field5");
-					this.OnField5Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Field6", DbType="NVarChar(50)")]
-		public string Field6
-		{
-			get
-			{
-				return this._Field6;
-			}
-			set
-			{
-				if ((this._Field6 != value))
-				{
-					this.OnField6Changing(value);
-					this.SendPropertyChanging();
-					this._Field6 = value;
-					this.SendPropertyChanged("Field6");
-					this.OnField6Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Field7", DbType="NVarChar(50)")]
-		public string Field7
-		{
-			get
-			{
-				return this._Field7;
-			}
-			set
-			{
-				if ((this._Field7 != value))
-				{
-					this.OnField7Changing(value);
-					this.SendPropertyChanging();
-					this._Field7 = value;
-					this.SendPropertyChanged("Field7");
-					this.OnField7Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Field8", DbType="NVarChar(50)")]
-		public string Field8
-		{
-			get
-			{
-				return this._Field8;
-			}
-			set
-			{
-				if ((this._Field8 != value))
-				{
-					this.OnField8Changing(value);
-					this.SendPropertyChanging();
-					this._Field8 = value;
-					this.SendPropertyChanged("Field8");
-					this.OnField8Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Field9", DbType="NVarChar(50)")]
-		public string Field9
-		{
-			get
-			{
-				return this._Field9;
-			}
-			set
-			{
-				if ((this._Field9 != value))
-				{
-					this.OnField9Changing(value);
-					this.SendPropertyChanging();
-					this._Field9 = value;
-					this.SendPropertyChanged("Field9");
-					this.OnField9Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TimeFrom", DbType="Date NOT NULL")]
-		public System.DateTime TimeFrom
-		{
-			get
-			{
-				return this._TimeFrom;
-			}
-			set
-			{
-				if ((this._TimeFrom != value))
-				{
-					this.OnTimeFromChanging(value);
-					this.SendPropertyChanging();
-					this._TimeFrom = value;
-					this.SendPropertyChanged("TimeFrom");
-					this.OnTimeFromChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TimeTo", DbType="Date NOT NULL")]
-		public System.DateTime TimeTo
-		{
-			get
-			{
-				return this._TimeTo;
-			}
-			set
-			{
-				if ((this._TimeTo != value))
-				{
-					this.OnTimeToChanging(value);
-					this.SendPropertyChanging();
-					this._TimeTo = value;
-					this.SendPropertyChanged("TimeTo");
-					this.OnTimeToChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amount", DbType="Int NOT NULL")]
-		public int Amount
-		{
-			get
-			{
-				return this._Amount;
-			}
-			set
-			{
-				if ((this._Amount != value))
-				{
-					this.OnAmountChanging(value);
-					this.SendPropertyChanging();
-					this._Amount = value;
-					this.SendPropertyChanged("Amount");
-					this.OnAmountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remark", DbType="NVarChar(50)")]
-		public string Remark
-		{
-			get
-			{
-				return this._Remark;
-			}
-			set
-			{
-				if ((this._Remark != value))
-				{
-					this.OnRemarkChanging(value);
-					this.SendPropertyChanging();
-					this._Remark = value;
-					this.SendPropertyChanged("Remark");
-					this.OnRemarkChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsUse", DbType="Bit NOT NULL")]
-		public bool IsUse
-		{
-			get
-			{
-				return this._IsUse;
-			}
-			set
-			{
-				if ((this._IsUse != value))
-				{
-					this.OnIsUseChanging(value);
-					this.SendPropertyChanging();
-					this._IsUse = value;
-					this.SendPropertyChanged("IsUse");
-					this.OnIsUseChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MMFeeMaster")]
 	public partial class MMFeeMaster : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -3935,6 +3127,140 @@ namespace FinanceManagement
 					this._Amount = value;
 					this.SendPropertyChanged("Amount");
 					this.OnAmountChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MMFeeTypeStruct")]
+	public partial class MMFeeTypeStruct : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _FeeId;
+		
+		private string _FeeType;
+		
+		private string _Remark;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnFeeIdChanging(int value);
+    partial void OnFeeIdChanged();
+    partial void OnFeeTypeChanging(string value);
+    partial void OnFeeTypeChanged();
+    partial void OnRemarkChanging(string value);
+    partial void OnRemarkChanged();
+    #endregion
+		
+		public MMFeeTypeStruct()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FeeId", DbType="Int NOT NULL")]
+		public int FeeId
+		{
+			get
+			{
+				return this._FeeId;
+			}
+			set
+			{
+				if ((this._FeeId != value))
+				{
+					this.OnFeeIdChanging(value);
+					this.SendPropertyChanging();
+					this._FeeId = value;
+					this.SendPropertyChanged("FeeId");
+					this.OnFeeIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FeeType", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string FeeType
+		{
+			get
+			{
+				return this._FeeType;
+			}
+			set
+			{
+				if ((this._FeeType != value))
+				{
+					this.OnFeeTypeChanging(value);
+					this.SendPropertyChanging();
+					this._FeeType = value;
+					this.SendPropertyChanged("FeeType");
+					this.OnFeeTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remark", DbType="NVarChar(50)")]
+		public string Remark
+		{
+			get
+			{
+				return this._Remark;
+			}
+			set
+			{
+				if ((this._Remark != value))
+				{
+					this.OnRemarkChanging(value);
+					this.SendPropertyChanging();
+					this._Remark = value;
+					this.SendPropertyChanged("Remark");
+					this.OnRemarkChanged();
 				}
 			}
 		}

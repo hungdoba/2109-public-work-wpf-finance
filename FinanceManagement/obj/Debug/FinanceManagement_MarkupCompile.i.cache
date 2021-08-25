@@ -1,7 +1,7 @@
 ﻿FinanceManagement
 
 
-exe
+winexe
 C#
 .cs
 C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\
@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\App.xaml
-14-440851985
+121503381661
 
-251696612242
+21-996103900
 22-192255971
-Function\WindowSelectConflictValue.xaml;Function\WindowSelectWorkbookSheet.xaml;MainWindow.xaml;UserControl\DatagridSetupMaster.xaml;WindowImport\WindowImportSale.xaml;WindowMaster\WindowFeeMaster.xaml;WindowMaster\WindowFixedFee.xaml;WindowMaster\WindowPassword.xaml;WindowReport\WindowRevenue.xaml;WindowReport\WindowSale.xaml;WindowMaster\WindowSetup.xaml;WindowMaster\WindowCustomerMaster.xaml;WindowMaster\WindowMaster.xaml;WindowReport\WindowFee.xaml;
+Function\WindowSelectConflictValue.xaml;Function\WindowSelectWorkbookSheet.xaml;MainWindow.xaml;WindowImport\WindowImportSale.xaml;WindowMaster\WindowFeeMaster.xaml;WindowMaster\WindowFixedFee.xaml;WindowMaster\WindowMasterAll.xaml;WindowMaster\WindowPassword.xaml;WindowReport\WindowRevenue.xaml;WindowReport\WindowSale.xaml;WindowMaster\WindowSetup.xaml;WindowReport\WindowFee.xaml;
 
-True
+False
 
