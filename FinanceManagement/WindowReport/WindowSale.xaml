@@ -76,7 +76,7 @@
                         </ToggleButton.Resources>
                     </ToggleButton>
 
-                    <ToggleButton x:Name="btnOta" Grid.Row="6" Grid.Column="1" Margin="5" Content="太田" Click="btn_Click" Background="White" Foreground="Black" BorderBrush="DarkBlue">
+                    <ToggleButton x:Name="btnOta" Grid.Row="6" Grid.Column="1" Margin="5" Content="工場" Click="btn_Click" Background="White" Foreground="Black" BorderBrush="DarkBlue">
                         <ToggleButton.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>
@@ -84,7 +84,7 @@
                         </ToggleButton.Resources>
                     </ToggleButton>
 
-                    <ToggleButton x:Name="btnSDC" Grid.Row="7" Grid.Column="1" Margin="5" Content="SDC" Click="btn_Click" Background="White" Foreground="Black" BorderBrush="DarkBlue">
+                    <ToggleButton x:Name="btnSDC" Grid.Row="7" Grid.Column="1" Margin="5" Content="デザインセンター" Click="btn_Click" Background="White" Foreground="Black" BorderBrush="DarkBlue">
                         <ToggleButton.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>

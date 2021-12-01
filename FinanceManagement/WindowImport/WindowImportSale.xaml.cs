@@ -204,18 +204,22 @@ namespace FinanceManagement.WindowImport
             if(toggleButton.Content.ToString() == "工事")
             {
                 cbCustomer.ItemsSource = itemFeeMasters.Where(x => x.HQWork);
+                department = "工事";
             }
             else if(toggleButton.Content.ToString() == "本社")
             {
                 cbCustomer.ItemsSource = itemFeeMasters.Where(x => x.HQ);
+                department = "本社";
             }
-            else if(toggleButton.Content.ToString() == "SDC")
+            else if(toggleButton.Content.ToString() == "デザインセンター")
             {
                 cbCustomer.ItemsSource = itemFeeMasters.Where(x => x.SDC);
+                department = "SDC";
             }
-            else if(toggleButton.Content.ToString() == "太田")
+            else if(toggleButton.Content.ToString() == "工場")
             {
                 cbCustomer.ItemsSource = itemFeeMasters.Where(x => x.Ota);
+                department = "太田";
             }
         }
 

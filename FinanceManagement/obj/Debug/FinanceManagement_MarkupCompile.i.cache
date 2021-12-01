@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\obj\Debug\
+C:\Users\PC3020\source\repos\Public\10. FinanceManagement\FinanceManagement\obj\Debug\
 FinanceManagement
 none
 false
 DEBUG;TRACE
-C:\Users\PC3020\source\repos\10. FinanceManagement\FinanceManagement\App.xaml
+C:\Users\PC3020\source\repos\Public\10. FinanceManagement\FinanceManagement\App.xaml
 121503381661
 
 21-996103900
-22-192255971
+22-1789327171
 Function\WindowSelectConflictValue.xaml;Function\WindowSelectWorkbookSheet.xaml;MainWindow.xaml;WindowImport\WindowImportSale.xaml;WindowMaster\WindowFeeMaster.xaml;WindowMaster\WindowFixedFee.xaml;WindowMaster\WindowMasterAll.xaml;WindowMaster\WindowPassword.xaml;WindowReport\WindowRevenue.xaml;WindowReport\WindowSale.xaml;WindowMaster\WindowSetup.xaml;WindowReport\WindowFee.xaml;
 
-False
+True
 

@@ -26,7 +26,8 @@ namespace FinanceManagement.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.222;Initial Catalog=HQData;User ID=client;Password=seiky0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-JEIV\\SQLJEIV;Initial Catalog=HQDataGithub;Integrated Security=" +
+            "True")]
         public string HQDataConnectionString {
             get {
                 return ((string)(this["HQDataConnectionString"]));

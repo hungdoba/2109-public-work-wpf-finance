@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="FinanceManagement.exe" version="1.0.0.14" publicKeyToken="0000000000000000" language="ja-JP" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="FinanceManagement.exe" version="1.0.0.16" publicKeyToken="0000000000000000" language="ja-JP" processorArchitecture="msil" type="win32" />
   <description asmv2:iconFile="Logo.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
@@ -67,33 +67,33 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FinanceManagement.exe" size="577096">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FinanceManagement.exe" size="500808">
       <assemblyIdentity name="FinanceManagement" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ozdscbAdj4gSG0MQ1bST23hs3jAxlbOXrOcZDamasI4=</dsig:DigestValue>
+        <dsig:DigestValue>vmQ8nvtAVurOoNmO1xmL+XZ4Xj5LVObLIbUnS3avLTc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="FinanceManagement.exe.config" size="1247">
+  <file name="FinanceManagement.exe.config" size="1253">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>o3PQlqFlKsb3r/jd6VYGqDehN/ri9rsFYCkpjG1QOmE=</dsig:DigestValue>
+      <dsig:DigestValue>nkNaZJtVLxQsg8omYligxn5cHkpgZQZI+41ad5mNz/I=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Logo.ico" size="150570">
+  <file name="Logo.ico" size="111327">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>Zs8aPceDzTZIM5cOXIYhkV+9OfYq7C8IqN++iKXwR/Q=</dsig:DigestValue>
+      <dsig:DigestValue>WWYe8wvZHrVM8kDl1GxHy/FgO6AqLvf0yrzpaPTNSZA=</dsig:DigestValue>
     </hash>
   </file>
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">

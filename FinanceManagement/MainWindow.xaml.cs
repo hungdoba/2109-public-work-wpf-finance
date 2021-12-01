@@ -30,9 +30,11 @@ namespace FinanceManagement
             stackPanel2.Children.RemoveRange(0, stackPanel2.Children.Count);
             stackPanel3.Children.RemoveRange(0, stackPanel3.Children.Count);
             stackPanel4.Children.RemoveRange(0, stackPanel4.Children.Count);
+            stackPanel5.Children.RemoveRange(0, stackPanel5.Children.Count);
+            stackPanel6.Children.RemoveRange(0, stackPanel6.Children.Count);
 
             double i = 1;
-            foreach (var temp in DatabaseHandler.GetFeeName("セイキョウ"))
+            foreach (MMFeeStruct temp in DatabaseHandler.GetFeeName("セイキョウ"))
             {
                 Button button = new Button()
                 {
@@ -63,10 +65,23 @@ namespace FinanceManagement
                     case 4:
                         _ = stackPanel4.Children.Add(button);
                         break;
+                    case 5:
+                        _ = stackPanel5.Children.Add(button);
+                        break;
+                    case 6:
+                        _ = stackPanel6.Children.Add(button);
+                        break;
                 }
 
                 i++;
             }
+
+            rowStackPanel1.Height = stackPanel1.Children.Count == 0 ? new GridLength(0) : new GridLength(2, GridUnitType.Star);
+            rowStackPanel2.Height = stackPanel2.Children.Count == 0 ? new GridLength(0) : new GridLength(2, GridUnitType.Star);
+            rowStackPanel3.Height = stackPanel3.Children.Count == 0 ? new GridLength(0) : new GridLength(2, GridUnitType.Star);
+            rowStackPanel4.Height = stackPanel4.Children.Count == 0 ? new GridLength(0) : new GridLength(2, GridUnitType.Star);
+            rowStackPanel5.Height = stackPanel5.Children.Count == 0 ? new GridLength(0) : new GridLength(2, GridUnitType.Star);
+            rowStackPanel6.Height = stackPanel6.Children.Count == 0 ? new GridLength(0) : new GridLength(2, GridUnitType.Star);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

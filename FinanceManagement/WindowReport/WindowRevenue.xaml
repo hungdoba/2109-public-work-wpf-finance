@@ -69,8 +69,8 @@
                     <ComboBox x:Name="cbDepartment" Grid.Column="0" Grid.Row="3" Margin="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" DropDownClosed="cbDepartment_DropDownClosed" SelectedIndex="0">
                         <ComboBoxItem Content="全社"/>
                         <ComboBoxItem Content="工事"/>
-                        <ComboBoxItem Content="太田"/>
-                        <ComboBoxItem Content="SDC"/>
+                        <ComboBoxItem Content="工場"/>
+                        <ComboBoxItem Content="デザインセンター"/>
                         <ComboBoxItem Content="本社"/>
                     </ComboBox>
 

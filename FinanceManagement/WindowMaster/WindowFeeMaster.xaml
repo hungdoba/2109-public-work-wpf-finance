@@ -140,7 +140,7 @@
                             </DataGridCheckBoxColumn.CellStyle>
                         </DataGridCheckBoxColumn>
 
-                        <DataGridCheckBoxColumn Header="太田用" Width="1*" Binding="{Binding Path=Ota, UpdateSourceTrigger=PropertyChanged}" ElementStyle="{StaticResource checkBoxSize}">
+                        <DataGridCheckBoxColumn Header="工場用" Width="1*" Binding="{Binding Path=Ota, UpdateSourceTrigger=PropertyChanged}" ElementStyle="{StaticResource checkBoxSize}">
                             <DataGridCheckBoxColumn.CellStyle>
                                 <Style>
                                     <EventSetter Event="CheckBox.Click" Handler="CheckBox_Modify"/>
@@ -148,7 +148,7 @@
                             </DataGridCheckBoxColumn.CellStyle>
                         </DataGridCheckBoxColumn>
 
-                        <DataGridCheckBoxColumn Header="SDC" Width="1*" Binding="{Binding Path=SDC, UpdateSourceTrigger=PropertyChanged}" ElementStyle="{StaticResource checkBoxSize}">
+                        <DataGridCheckBoxColumn Header="デザインセンター" Width="1*" Binding="{Binding Path=デザインセンター, UpdateSourceTrigger=PropertyChanged}" ElementStyle="{StaticResource checkBoxSize}">
                             <DataGridCheckBoxColumn.CellStyle>
                                 <Style>
                                     <EventSetter Event="CheckBox.Click" Handler="CheckBox_Modify"/>
